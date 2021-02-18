@@ -1,4 +1,4 @@
-package application;
+package rmi;
 
 import java.net.URL;
 
