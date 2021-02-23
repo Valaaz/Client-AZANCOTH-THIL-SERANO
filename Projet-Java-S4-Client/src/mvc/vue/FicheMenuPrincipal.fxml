@@ -24,7 +24,9 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Aide">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Jeu du pendu" />
+                  <MenuItem fx:id="menuItemPendu" mnemonicParsing="false" onAction="#reglesPendu" text="Jeu du pendu" />
+                  <MenuItem fx:id="menuItemAllumettes" mnemonicParsing="false" onAction="#reglesAllumettes" text="Jeu des allumettes" />
+                  <MenuItem fx:id="menuItemTicTacToe" mnemonicParsing="false" onAction="#reglesTicTacToe" text="Tic-Tac-Toe" />
                </items>
             </Menu>
          </menus>
