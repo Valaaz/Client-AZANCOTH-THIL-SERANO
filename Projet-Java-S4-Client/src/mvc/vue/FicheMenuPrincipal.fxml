@@ -31,9 +31,9 @@
             </Menu>
          </menus>
       </MenuBar>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="813.0" text="Bienvenue sur notre serveur de jeu !" textAlignment="CENTER" textFill="#670000">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="813.0" text="Bienvenue sur notre serveur de jeu !" textAlignment="CENTER" textFill="#922727">
          <font>
-            <Font size="24.0" />
+            <Font name="Times New Roman" size="36.0" />
          </font>
          <VBox.margin>
             <Insets top="15.0" />
@@ -50,6 +50,9 @@
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Button fx:id="boutonPendu" contentDisplay="TOP" mnemonicParsing="false" onAction="#jeuDuPendu">
+               <padding>
+                  <Insets bottom="-10.0" left="-1.0" right="-1.0" top="-10.0" />
+               </padding>
                <graphic>
                   <ImageView fitHeight="208.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -60,9 +63,6 @@
                      </viewport>
                   </ImageView>
                </graphic>
-               <padding>
-                  <Insets bottom="-10.0" left="-1.0" right="-1.0" top="-10.0" />
-               </padding>
             </Button>
          </children>
       </HBox>
