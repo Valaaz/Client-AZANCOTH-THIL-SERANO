@@ -1,15 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controleur.ControleurJeuPendu">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="422.0" text="Jeu du pendu" textAlignment="CENTER" textFill="#840000">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <GridPane fx:id="gripPaneLettre" alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="boutonA" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="A" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonB" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="B" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonC" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="C" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonD" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="D" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonE" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="E" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonF" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="F" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonG" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="G" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonH" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="H" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonI" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="I" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonJ" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="J" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonK" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="K" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonL" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="L" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonM" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="M" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonN" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="N" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonO" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="O" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonP" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="P" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonQ" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="Q" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonR" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="R" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonS" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="S" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonT" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="T" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonU" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="U" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonV" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="V" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonW" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="W" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonX" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="X" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonY" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="Y" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="boutonZ" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="Z" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </Button>
+         </children>
+      </GridPane>
    </children>
 </VBox>
