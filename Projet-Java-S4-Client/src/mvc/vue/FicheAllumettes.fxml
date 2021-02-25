@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controleur.ControleurJeuAllumettes">
    <children>
@@ -12,5 +18,246 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <GridPane alignment="CENTER" prefHeight="223.0" prefWidth="600.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.2000244140625" minWidth="10.0" prefWidth="91.1999755859375" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.39996337890625" minWidth="10.0" prefWidth="58.4000244140625" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.59997558593753" minWidth="10.0" prefWidth="59.79999999999998" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.39996337890625" minWidth="10.0" prefWidth="58.40001220703127" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.20001220703125" minWidth="10.0" prefWidth="56.79998779296875" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="371.99999999999994" minWidth="10.0" prefWidth="54.19999999999999" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="371.99999999999994" minWidth="10.0" prefWidth="56.80003662109374" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="371.99999999999994" minWidth="10.0" prefWidth="61.5999755859375" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="371.99999999999994" minWidth="10.0" prefWidth="55.20004882812498" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="371.99999999999994" minWidth="10.0" prefWidth="53.19998779296884" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="133.59999389648436" minHeight="50.0" prefHeight="114.40001220703125" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="70.39999999999999" minHeight="0.0" prefHeight="19.19998779296874" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#enleverAllumette" prefHeight="65.0" prefWidth="0.0">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.columnIndex="1">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.columnIndex="2">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.columnIndex="3">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.columnIndex="4">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding></Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.columnIndex="5">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding></Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.rowIndex="1">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin></Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding></Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding></Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding></Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding></Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.columnIndex="5" GridPane.rowIndex="1">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding></Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.columnIndex="6">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.columnIndex="6" GridPane.rowIndex="1">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.columnIndex="7">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding></Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.columnIndex="7" GridPane.rowIndex="1">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding></Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.columnIndex="8">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding></Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.columnIndex="8" GridPane.rowIndex="1">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding></Button>
+            <Button mnemonicParsing="false" onAction="#enleverAllumette" GridPane.columnIndex="9">
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bouton_allumette.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-15.0" left="-40.0" right="-40.0" top="-15.0" />
+               </padding></Button>
+         </children>
+      </GridPane>
    </children>
 </VBox>
