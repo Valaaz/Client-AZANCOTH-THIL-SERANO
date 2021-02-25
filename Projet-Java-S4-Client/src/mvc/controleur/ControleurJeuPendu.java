@@ -1,19 +1,35 @@
 package mvc.controleur;
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+
 
 public class ControleurJeuPendu implements Initializable {
+	
+	String dictionnaire[] = {"Claire", "Valentin", "Waian"}; 
 
 	@FXML
 	private Button boutonA, boutonB, boutonC, boutonD, boutonE, boutonF, boutonG, boutonH, boutonI, boutonJ, boutonK,
 			boutonL, boutonM, boutonN, boutonO, boutonP, boutonQ, boutonR, boutonS, boutonT, boutonU, boutonV, boutonW,
 			boutonX, boutonY, boutonZ;
+	
+	@FXML 
+	private Label labelMot; 
+	
+	@FXML
+	private Line pendu1, pendu2, pendu3, pendu4, pendu5, pendu7, pendu8, pendu9, pendu10, pendu11;
+	
+	@FXML
+	private Circle pendu6; 
 
 	@FXML
 	private GridPane gridPaneLettre;
@@ -46,11 +62,46 @@ public class ControleurJeuPendu implements Initializable {
 		boutonX.setPrefSize(30, 30);
 		boutonY.setPrefSize(30, 30);
 		boutonZ.setPrefSize(30, 30);
-
+		pendu1.setVisible(false);
+		pendu2.setVisible(false);
+		pendu3.setVisible(false);
+		pendu4.setVisible(false);
+		pendu5.setVisible(false);
+		pendu6.setVisible(false);
+		pendu7.setVisible(false);
+		pendu8.setVisible(false);
+		pendu9.setVisible(false);
+		pendu10.setVisible(false);
+		pendu11.setVisible(false);
+		initialiserMot(); 
 	}
 
 	public void ecritLettre() {
 		System.out.println("Bonjour");
+	}
+	
+	
+	public void initialiserMot() {
+		int nb;
+		String mot; 
+		String[] motPendu;
+		String motATrou = ""; 
+		
+		Random nbAleatoire = new Random();
+		nb = nbAleatoire.nextInt(3);
+		
+		mot = dictionnaire[nb] ;
+		motPendu = new String[mot.length()];
+		
+		for (int i=0; i<motPendu.length; i++) {
+			motPendu[i]= "_ ";
+		}
+		
+		for (int i=0; i<motPendu.length; i++) {
+			motATrou+=motPendu[i];
+			labelMot.setText(motATrou);
+		}
+		
 	}
 
 }
