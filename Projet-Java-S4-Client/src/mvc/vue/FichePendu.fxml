@@ -172,8 +172,8 @@
          <children>
             <Line fx:id="pendu1" endX="50.0" startX="-50.0" translateX="100.0" translateY="225.0" />
             <Line fx:id="pendu2" endY="200.0" translateX="50.0" translateY="25.0" />
-            <Line fx:id="pendu3" endY="50.0" startX="50.0" translateX="50.0" translateY="25.0" />
-            <Line fx:id="pendu4" endX="150.0" translateX="-2.0" translateY="25.0" />
+            <Line fx:id="pendu3" endX="150.0" translateX="49.0" translateY="25.0" />
+            <Line fx:id="pendu4" endY="50.0" startX="50.0" translateX="-103.0" translateY="25.0" />
             <Line fx:id="pendu5" endY="20.0" translateX="-50.0" translateY="25.0" />
             <Circle fx:id="pendu6" fill="TRANSPARENT" radius="20.0" stroke="BLACK" strokeType="INSIDE" translateX="-70.0" translateY="45.0" />
             <Line fx:id="pendu7" endY="75.0" translateX="-92.0" translateY="85.0" />
