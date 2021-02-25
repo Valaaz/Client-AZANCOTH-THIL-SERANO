@@ -45,7 +45,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="boutonA" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ecritLettre" text="A" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button fx:id="boutonA" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#ecritLettre" text="A" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>

@@ -4,8 +4,10 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -16,6 +18,9 @@ import javafx.scene.shape.Line;
 public class ControleurJeuPendu implements Initializable {
 	
 	String dictionnaire[] = {"Claire", "Valentin", "Waian"}; 
+	String mot; 
+	String[] motPendu;
+	String motATrou = ""; 
 
 	@FXML
 	private Button boutonA, boutonB, boutonC, boutonD, boutonE, boutonF, boutonG, boutonH, boutonI, boutonJ, boutonK,
@@ -73,19 +78,30 @@ public class ControleurJeuPendu implements Initializable {
 		pendu9.setVisible(false);
 		pendu10.setVisible(false);
 		pendu11.setVisible(false);
-		initialiserMot(); 
-	}
-
-	public void ecritLettre() {
-		System.out.println("Bonjour");
+		initialiserMot();
+		
 	}
 	
+	@FXML
+	/*
+	public void ecritLettre(Button bouton) {
+		System.out.println("Bonjour");
+		char lettre = bouton.getText().toLowerCase().charAt(0);
+		for (int i =0; i<mot.length(); i++) {
+			if (mot.charAt(i)==lettre) motPendu[i]=lettre+"";
+		}
+	}*/
+	
+	public void ecritLettre(ActionEvent event) {
+		System.out.println("Bonjour");
+		Button btn = (Button) event.getSource();
+		String id = btn.getId();
+	    char lettre =  id.charAt(0);
+	    System.out.println(lettre);
+	}
 	
 	public void initialiserMot() {
 		int nb;
-		String mot; 
-		String[] motPendu;
-		String motATrou = ""; 
 		
 		Random nbAleatoire = new Random();
 		nb = nbAleatoire.nextInt(3);
@@ -102,6 +118,21 @@ public class ControleurJeuPendu implements Initializable {
 			labelMot.setText(motATrou);
 		}
 		
+	}
+	
+	public void ajoutTrait(int nbErreurs) {
+		if (nbErreurs == 0);
+		else if (nbErreurs == 1) pendu1.setVisible(true);
+		else if (nbErreurs == 2) pendu2.setVisible(true);
+		else if (nbErreurs == 3) pendu3.setVisible(true);
+		else if (nbErreurs == 4) pendu4.setVisible(true);
+		else if (nbErreurs == 5) pendu5.setVisible(true);
+		else if (nbErreurs == 6) pendu6.setVisible(true);
+		else if (nbErreurs == 7) pendu7.setVisible(true);
+		else if (nbErreurs == 8) pendu8.setVisible(true);
+		else if (nbErreurs == 9) pendu9.setVisible(true);
+		else if (nbErreurs == 10) pendu10.setVisible(true);
+		else pendu11.setVisible(true);
 	}
 
 }
