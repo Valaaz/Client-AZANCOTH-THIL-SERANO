@@ -20,5 +20,4 @@ public class ControleurJeuTicTacToe implements Initializable {
 		label01.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
 		label21.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
 	}
-
 }
