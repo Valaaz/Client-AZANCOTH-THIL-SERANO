@@ -1,7 +1,7 @@
 package mvc.controleur;
 
-import java.io.IOException;
 import java.net.URL;
+import java.rmi.Naming;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +14,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import mvc.modele.JeuInterface;
 
 public class ControleurMenuPrincipal {
 
@@ -26,12 +27,16 @@ public class ControleurMenuPrincipal {
 	@FXML
 	private MenuItem menuItemTicTacToe;
 	@FXML
-	private Button boutonPendu;
+	private Button boutonTicTacToe;
 
 	@FXML
-	public void jeuDuPendu() {
+	public void jeuDuTicTacToe() {
 		try {
-			URL fxmlURL = getClass().getResource("/mvc/vue/FichePendu.fxml");
+			int port = 8000;
+			JeuInterface obj = (JeuInterface) Naming.lookup("rmi://localhost:" + port + "/hello");
+			System.out.println(obj.echo());
+
+			URL fxmlURL = getClass().getResource("/mvc/vue/FicheTicTacToe.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
 			Parent root = fxmlLoader.load();
 
@@ -39,13 +44,13 @@ public class ControleurMenuPrincipal {
 
 			stage.setResizable(false);
 			stage.initModality(Modality.WINDOW_MODAL);
-			stage.setTitle("Pendu");
+			stage.setTitle("Allumettes");
 			stage.setScene(new Scene(root, 500, 400));
 			stage.showAndWait(); // Permet, avec le code suivant, de rafraichir la table de donnees
-
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Client exception: " + e);
 		}
+
 	}
 
 	@FXML

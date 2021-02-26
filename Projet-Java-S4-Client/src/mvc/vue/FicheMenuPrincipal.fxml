@@ -49,14 +49,14 @@
       </Label>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="boutonPendu" contentDisplay="TOP" mnemonicParsing="false" onAction="#jeuDuPendu">
+            <Button fx:id="boutonTicTacToe" contentDisplay="TOP" mnemonicParsing="false" onAction="#jeuDuTicTacToe">
                <padding>
                   <Insets bottom="-10.0" left="-1.0" right="-1.0" top="-10.0" />
                </padding>
                <graphic>
                   <ImageView fitHeight="208.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Images/pendu.jpg" />
+                        <Image url="@images/morpion.jpg" />
                      </image>
                      <viewport>
                         <Rectangle2D />
