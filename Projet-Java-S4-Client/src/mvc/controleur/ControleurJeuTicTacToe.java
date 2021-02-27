@@ -79,6 +79,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 			e.consume();
 			verificationVictoireJoueur1();
 			verificationVictoireJoueur2();
+			verificationMatchNul();
 		}
 
 	};
@@ -167,10 +168,18 @@ public class ControleurJeuTicTacToe implements Initializable {
 		}
 	}
 
+	public void verificationMatchNul() {
+		if (label1.getText() != "" && label2.getText() != "" && label3.getText() != "" && label4.getText() != ""
+				&& label5.getText() != "" && label6.getText() != "" && label7.getText() != "" && label8.getText() != ""
+				&& label9.getText() != "")
+			System.out.println("Match nul !!");
+	}
+
 	public void reinitialisation() {
 		System.out.println("Nouvelle partie :");
 		tour = 1;
 		tourJoueur.setText("Au tour du joueur " + tour);
+
 		label1.setText("");
 		label2.setText("");
 		label3.setText("");
