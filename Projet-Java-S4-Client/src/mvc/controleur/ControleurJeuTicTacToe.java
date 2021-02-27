@@ -18,6 +18,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		tour = 1;
 		tourJoueur.setText("Au tour du joueur " + tour);
 		label00.setOnMouseClicked(handler);
 		label10.setOnMouseClicked(handler);
@@ -76,6 +77,8 @@ public class ControleurJeuTicTacToe implements Initializable {
 				poseForme(label22);
 			}
 			e.consume();
+			verificationVictoireJoueur1();
+			verificationVictoireJoueur2();
 		}
 
 	};
@@ -92,6 +95,91 @@ public class ControleurJeuTicTacToe implements Initializable {
 			joueurActuel += tour;
 		}
 		tourJoueur.setText(joueurActuel);
+	}
+
+	public void verificationVictoireJoueur1() {
+		if (label00.getText() == "X" && label10.getText() == "X" && label20.getText() == "X") {
+			System.out.println("Victoire des X !!");
+			reinitialisation();
+		}
+		if (label01.getText() == "X" && label11.getText() == "X" && label21.getText() == "X") {
+			System.out.println("Victoire des X !!");
+			reinitialisation();
+		}
+		if (label02.getText() == "X" && label12.getText() == "X" && label22.getText() == "X") {
+			System.out.println("Victoire des X !!");
+			reinitialisation();
+		}
+		if (label00.getText() == "X" && label01.getText() == "X" && label02.getText() == "X") {
+			System.out.println("Victoire des X !!");
+			reinitialisation();
+		}
+		if (label10.getText() == "X" && label11.getText() == "X" && label12.getText() == "X") {
+			System.out.println("Victoire des X !!");
+			reinitialisation();
+		}
+		if (label20.getText() == "X" && label21.getText() == "X" && label22.getText() == "X") {
+			System.out.println("Victoire des X !!");
+			reinitialisation();
+		}
+		if (label00.getText() == "X" && label11.getText() == "X" && label22.getText() == "X") {
+			System.out.println("Victoire des X !!");
+			reinitialisation();
+		}
+		if (label02.getText() == "X" && label11.getText() == "X" && label20.getText() == "X") {
+			System.out.println("Victoire des X !!");
+			reinitialisation();
+		}
+	}
+
+	public void verificationVictoireJoueur2() {
+		if (label00.getText() == "O" && label10.getText() == "O" && label20.getText() == "O") {
+			System.out.println("Victoire des O !!");
+			reinitialisation();
+		}
+		if (label01.getText() == "O" && label11.getText() == "O" && label21.getText() == "O") {
+			System.out.println("Victoire des O !!");
+			reinitialisation();
+		}
+		if (label02.getText() == "O" && label12.getText() == "O" && label22.getText() == "O") {
+			System.out.println("Victoire des O !!");
+			reinitialisation();
+		}
+		if (label00.getText() == "O" && label01.getText() == "O" && label02.getText() == "O") {
+			System.out.println("Victoire des O !!");
+			reinitialisation();
+		}
+		if (label10.getText() == "O" && label11.getText() == "O" && label12.getText() == "O") {
+			System.out.println("Victoire des O !!");
+			reinitialisation();
+		}
+		if (label20.getText() == "O" && label21.getText() == "O" && label22.getText() == "O") {
+			System.out.println("Victoire des O !!");
+			reinitialisation();
+		}
+		if (label00.getText() == "O" && label11.getText() == "O" && label22.getText() == "O") {
+			System.out.println("Victoire des O !!");
+			reinitialisation();
+		}
+		if (label02.getText() == "O" && label11.getText() == "O" && label20.getText() == "O") {
+			System.out.println("Victoire des O !!");
+			reinitialisation();
+		}
+	}
+
+	public void reinitialisation() {
+		System.out.println("Nouvelle partie :");
+		tour = 1;
+		tourJoueur.setText("Au tour du joueur " + tour);
+		label00.setText("");
+		label10.setText("");
+		label20.setText("");
+		label01.setText("");
+		label11.setText("");
+		label21.setText("");
+		label02.setText("");
+		label12.setText("");
+		label22.setText("");
 	}
 
 }
