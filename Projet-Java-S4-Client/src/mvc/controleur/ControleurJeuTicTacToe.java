@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 public class ControleurJeuTicTacToe implements Initializable {
 
 	@FXML
-	private Label label00, label10, label20, label01, label11, label21, label02, label12, label22, tourJoueur;
+	private Label label1, label2, label3, label4, label5, label6, label7, label8, label9, tourJoueur;
 
 	public int tour = 1;
 
@@ -20,61 +20,61 @@ public class ControleurJeuTicTacToe implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		tour = 1;
 		tourJoueur.setText("Au tour du joueur " + tour);
-		label00.setOnMouseClicked(handler);
-		label10.setOnMouseClicked(handler);
-		label20.setOnMouseClicked(handler);
-		label01.setOnMouseClicked(handler);
-		label11.setOnMouseClicked(handler);
-		label21.setOnMouseClicked(handler);
-		label02.setOnMouseClicked(handler);
-		label12.setOnMouseClicked(handler);
-		label22.setOnMouseClicked(handler);
-		label10.setStyle("-fx-border-color: black; -fx-border-style: hidden solid hidden solid;");
-		label11.setStyle("-fx-border-color: black;");
-		label12.setStyle("-fx-border-color: black; -fx-border-style: hidden solid hidden solid;");
-		label01.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
-		label21.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
+		label1.setOnMouseClicked(handler);
+		label2.setOnMouseClicked(handler);
+		label3.setOnMouseClicked(handler);
+		label4.setOnMouseClicked(handler);
+		label5.setOnMouseClicked(handler);
+		label6.setOnMouseClicked(handler);
+		label7.setOnMouseClicked(handler);
+		label8.setOnMouseClicked(handler);
+		label9.setOnMouseClicked(handler);
+		label2.setStyle("-fx-border-color: black; -fx-border-style: hidden solid hidden solid;");
+		label5.setStyle("-fx-border-color: black;");
+		label8.setStyle("-fx-border-color: black; -fx-border-style: hidden solid hidden solid;");
+		label4.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
+		label6.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
 	}
 
 	EventHandler<MouseEvent> handler = new EventHandler<MouseEvent>() {
 
 		@Override
 		public void handle(MouseEvent e) {
-			if (e.getSource() == label00) {
-				System.out.println(label00.getId());
-				poseForme(label00);
+			if (e.getSource() == label1 && label1.getText() == "") {
+				System.out.println(label1.getId());
+				poseForme(label1);
 			}
-			if (e.getSource() == label10) {
-				System.out.println(label10.getId());
-				poseForme(label10);
+			if (e.getSource() == label2 && label2.getText() == "") {
+				System.out.println(label2.getId());
+				poseForme(label2);
 			}
-			if (e.getSource() == label20) {
-				System.out.println(label20.getId());
-				poseForme(label20);
+			if (e.getSource() == label3 && label3.getText() == "") {
+				System.out.println(label3.getId());
+				poseForme(label3);
 			}
-			if (e.getSource() == label01) {
-				System.out.println(label01.getId());
-				poseForme(label01);
+			if (e.getSource() == label4 && label4.getText() == "") {
+				System.out.println(label4.getId());
+				poseForme(label4);
 			}
-			if (e.getSource() == label11) {
-				System.out.println(label11.getId());
-				poseForme(label11);
+			if (e.getSource() == label5 && label5.getText() == "") {
+				System.out.println(label5.getId());
+				poseForme(label5);
 			}
-			if (e.getSource() == label12) {
-				System.out.println(label12.getId());
-				poseForme(label12);
+			if (e.getSource() == label8 && label8.getText() == "") {
+				System.out.println(label8.getId());
+				poseForme(label8);
 			}
-			if (e.getSource() == label02) {
-				System.out.println(label02.getId());
-				poseForme(label02);
+			if (e.getSource() == label7 && label7.getText() == "") {
+				System.out.println(label7.getId());
+				poseForme(label7);
 			}
-			if (e.getSource() == label21) {
-				System.out.println(label21.getId());
-				poseForme(label21);
+			if (e.getSource() == label6 && label6.getText() == "") {
+				System.out.println(label6.getId());
+				poseForme(label6);
 			}
-			if (e.getSource() == label22) {
-				System.out.println(label22.getId());
-				poseForme(label22);
+			if (e.getSource() == label9 && label9.getText() == "") {
+				System.out.println(label9.getId());
+				poseForme(label9);
 			}
 			e.consume();
 			verificationVictoireJoueur1();
@@ -98,70 +98,70 @@ public class ControleurJeuTicTacToe implements Initializable {
 	}
 
 	public void verificationVictoireJoueur1() {
-		if (label00.getText() == "X" && label10.getText() == "X" && label20.getText() == "X") {
+		if (label1.getText() == "X" && label2.getText() == "X" && label3.getText() == "X") {
 			System.out.println("Victoire des X !!");
 			reinitialisation();
 		}
-		if (label01.getText() == "X" && label11.getText() == "X" && label21.getText() == "X") {
+		if (label4.getText() == "X" && label5.getText() == "X" && label6.getText() == "X") {
 			System.out.println("Victoire des X !!");
 			reinitialisation();
 		}
-		if (label02.getText() == "X" && label12.getText() == "X" && label22.getText() == "X") {
+		if (label7.getText() == "X" && label8.getText() == "X" && label9.getText() == "X") {
 			System.out.println("Victoire des X !!");
 			reinitialisation();
 		}
-		if (label00.getText() == "X" && label01.getText() == "X" && label02.getText() == "X") {
+		if (label1.getText() == "X" && label4.getText() == "X" && label7.getText() == "X") {
 			System.out.println("Victoire des X !!");
 			reinitialisation();
 		}
-		if (label10.getText() == "X" && label11.getText() == "X" && label12.getText() == "X") {
+		if (label2.getText() == "X" && label5.getText() == "X" && label8.getText() == "X") {
 			System.out.println("Victoire des X !!");
 			reinitialisation();
 		}
-		if (label20.getText() == "X" && label21.getText() == "X" && label22.getText() == "X") {
+		if (label3.getText() == "X" && label6.getText() == "X" && label9.getText() == "X") {
 			System.out.println("Victoire des X !!");
 			reinitialisation();
 		}
-		if (label00.getText() == "X" && label11.getText() == "X" && label22.getText() == "X") {
+		if (label1.getText() == "X" && label5.getText() == "X" && label9.getText() == "X") {
 			System.out.println("Victoire des X !!");
 			reinitialisation();
 		}
-		if (label02.getText() == "X" && label11.getText() == "X" && label20.getText() == "X") {
+		if (label7.getText() == "X" && label5.getText() == "X" && label3.getText() == "X") {
 			System.out.println("Victoire des X !!");
 			reinitialisation();
 		}
 	}
 
 	public void verificationVictoireJoueur2() {
-		if (label00.getText() == "O" && label10.getText() == "O" && label20.getText() == "O") {
+		if (label1.getText() == "O" && label2.getText() == "O" && label3.getText() == "O") {
 			System.out.println("Victoire des O !!");
 			reinitialisation();
 		}
-		if (label01.getText() == "O" && label11.getText() == "O" && label21.getText() == "O") {
+		if (label4.getText() == "O" && label5.getText() == "O" && label6.getText() == "O") {
 			System.out.println("Victoire des O !!");
 			reinitialisation();
 		}
-		if (label02.getText() == "O" && label12.getText() == "O" && label22.getText() == "O") {
+		if (label7.getText() == "O" && label8.getText() == "O" && label9.getText() == "O") {
 			System.out.println("Victoire des O !!");
 			reinitialisation();
 		}
-		if (label00.getText() == "O" && label01.getText() == "O" && label02.getText() == "O") {
+		if (label1.getText() == "O" && label4.getText() == "O" && label7.getText() == "O") {
 			System.out.println("Victoire des O !!");
 			reinitialisation();
 		}
-		if (label10.getText() == "O" && label11.getText() == "O" && label12.getText() == "O") {
+		if (label2.getText() == "O" && label5.getText() == "O" && label8.getText() == "O") {
 			System.out.println("Victoire des O !!");
 			reinitialisation();
 		}
-		if (label20.getText() == "O" && label21.getText() == "O" && label22.getText() == "O") {
+		if (label3.getText() == "O" && label6.getText() == "O" && label9.getText() == "O") {
 			System.out.println("Victoire des O !!");
 			reinitialisation();
 		}
-		if (label00.getText() == "O" && label11.getText() == "O" && label22.getText() == "O") {
+		if (label1.getText() == "O" && label5.getText() == "O" && label9.getText() == "O") {
 			System.out.println("Victoire des O !!");
 			reinitialisation();
 		}
-		if (label02.getText() == "O" && label11.getText() == "O" && label20.getText() == "O") {
+		if (label7.getText() == "O" && label5.getText() == "O" && label3.getText() == "O") {
 			System.out.println("Victoire des O !!");
 			reinitialisation();
 		}
@@ -171,15 +171,15 @@ public class ControleurJeuTicTacToe implements Initializable {
 		System.out.println("Nouvelle partie :");
 		tour = 1;
 		tourJoueur.setText("Au tour du joueur " + tour);
-		label00.setText("");
-		label10.setText("");
-		label20.setText("");
-		label01.setText("");
-		label11.setText("");
-		label21.setText("");
-		label02.setText("");
-		label12.setText("");
-		label22.setText("");
+		label1.setText("");
+		label2.setText("");
+		label3.setText("");
+		label4.setText("");
+		label5.setText("");
+		label6.setText("");
+		label7.setText("");
+		label8.setText("");
+		label9.setText("");
 	}
 
 }
