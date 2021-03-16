@@ -37,7 +37,7 @@ public class ControleurMenuPrincipal {
 			Stage stage = new Stage();
 
 			stage.setResizable(false);
-			stage.initModality(Modality.WINDOW_MODAL);
+			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("TicTacToe");
 			stage.setScene(new Scene(root, 500, 400));
 			stage.showAndWait(); // Permet, avec le code suivant, de rafraichir la table de donnees
