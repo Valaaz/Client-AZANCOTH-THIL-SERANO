@@ -1,6 +1,10 @@
 package mvc.controleur;
 
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 import javafx.event.EventHandler;
@@ -8,13 +12,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import mvc.modele.tictactoe.InterfaceTicTacToe;
 
 public class ControleurJeuTicTacToe implements Initializable {
 
 	@FXML
-	private Label label1, label2, label3, label4, label5, label6, label7, label8, label9, tourJoueur;
+	private Label label1, label2, label3, label4, label5, label6, label7, label8, label9, tourJoueur, labelIdPartie;
 
-	public int tour = 1;
+	private int tour = 1;
+	private int nbJoueur = 0;
+	private int idPartie;
+	private InterfaceTicTacToe intTtt;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -34,6 +42,22 @@ public class ControleurJeuTicTacToe implements Initializable {
 		label8.setStyle("-fx-border-color: black; -fx-border-style: hidden solid hidden solid;");
 		label4.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
 		label6.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
+
+		try {
+			intTtt = (InterfaceTicTacToe) Naming.lookup("rmi://localhost:8000/hello");
+			System.out.println(intTtt.echo());
+			/*
+			 * if (nbJoueur == 0) { idPartie = intTtt.numPartie(); nbJoueur++; } else if
+			 * (nbJoueur == 1) { idPartie = intTtt.numPartie() - 1; nbJoueur++; } else if
+			 * (nbJoueur == 2) { idPartie = intTtt.numPartie(); nbJoueur++; }
+			 * System.out.println(nbJoueur);
+			 */
+
+		} catch (RemoteException | MalformedURLException | NotBoundException e) {
+			System.out.println(e);
+		}
+
+		labelIdPartie.setText("Partie n°" + idPartie);
 	}
 
 	EventHandler<MouseEvent> handler = new EventHandler<MouseEvent>() {
@@ -77,8 +101,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 				poseForme(label9);
 			}
 			e.consume();
-			verificationVictoireJoueur1();
-			verificationVictoireJoueur2();
+			verificationVictoire();
 			verificationMatchNul();
 		}
 
@@ -98,72 +121,45 @@ public class ControleurJeuTicTacToe implements Initializable {
 		tourJoueur.setText(joueurActuel);
 	}
 
-	public void verificationVictoireJoueur1() {
-		if (label1.getText() == "X" && label2.getText() == "X" && label3.getText() == "X") {
-			System.out.println("Victoire des X !!");
+	public void verificationVictoire() {
+		if (label1.getText() == getForme(tour) && label2.getText() == getForme(tour)
+				&& label3.getText() == getForme(tour)) {
+			System.out.println("Victoire des " + getForme(tour) + " !!");
 			reinitialisation();
 		}
-		if (label4.getText() == "X" && label5.getText() == "X" && label6.getText() == "X") {
-			System.out.println("Victoire des X !!");
+		if (label4.getText() == getForme(tour) && label5.getText() == getForme(tour)
+				&& label6.getText() == getForme(tour)) {
+			System.out.println("Victoire des " + getForme(tour) + " !!");
 			reinitialisation();
 		}
-		if (label7.getText() == "X" && label8.getText() == "X" && label9.getText() == "X") {
-			System.out.println("Victoire des X !!");
+		if (label7.getText() == getForme(tour) && label8.getText() == getForme(tour)
+				&& label9.getText() == getForme(tour)) {
+			System.out.println("Victoire des " + getForme(tour) + " !!");
 			reinitialisation();
 		}
-		if (label1.getText() == "X" && label4.getText() == "X" && label7.getText() == "X") {
-			System.out.println("Victoire des X !!");
+		if (label1.getText() == getForme(tour) && label4.getText() == getForme(tour)
+				&& label7.getText() == getForme(tour)) {
+			System.out.println("Victoire des " + getForme(tour) + " !!");
 			reinitialisation();
 		}
-		if (label2.getText() == "X" && label5.getText() == "X" && label8.getText() == "X") {
-			System.out.println("Victoire des X !!");
+		if (label2.getText() == getForme(tour) && label5.getText() == getForme(tour)
+				&& label8.getText() == getForme(tour)) {
+			System.out.println("Victoire des " + getForme(tour) + " !!");
 			reinitialisation();
 		}
-		if (label3.getText() == "X" && label6.getText() == "X" && label9.getText() == "X") {
-			System.out.println("Victoire des X !!");
+		if (label3.getText() == getForme(tour) && label6.getText() == getForme(tour)
+				&& label9.getText() == getForme(tour)) {
+			System.out.println("Victoire des " + getForme(tour) + " !!");
 			reinitialisation();
 		}
-		if (label1.getText() == "X" && label5.getText() == "X" && label9.getText() == "X") {
-			System.out.println("Victoire des X !!");
+		if (label1.getText() == getForme(tour) && label5.getText() == getForme(tour)
+				&& label9.getText() == getForme(tour)) {
+			System.out.println("Victoire des " + getForme(tour) + " !!");
 			reinitialisation();
 		}
-		if (label7.getText() == "X" && label5.getText() == "X" && label3.getText() == "X") {
-			System.out.println("Victoire des X !!");
-			reinitialisation();
-		}
-	}
-
-	public void verificationVictoireJoueur2() {
-		if (label1.getText() == "O" && label2.getText() == "O" && label3.getText() == "O") {
-			System.out.println("Victoire des O !!");
-			reinitialisation();
-		}
-		if (label4.getText() == "O" && label5.getText() == "O" && label6.getText() == "O") {
-			System.out.println("Victoire des O !!");
-			reinitialisation();
-		}
-		if (label7.getText() == "O" && label8.getText() == "O" && label9.getText() == "O") {
-			System.out.println("Victoire des O !!");
-			reinitialisation();
-		}
-		if (label1.getText() == "O" && label4.getText() == "O" && label7.getText() == "O") {
-			System.out.println("Victoire des O !!");
-			reinitialisation();
-		}
-		if (label2.getText() == "O" && label5.getText() == "O" && label8.getText() == "O") {
-			System.out.println("Victoire des O !!");
-			reinitialisation();
-		}
-		if (label3.getText() == "O" && label6.getText() == "O" && label9.getText() == "O") {
-			System.out.println("Victoire des O !!");
-			reinitialisation();
-		}
-		if (label1.getText() == "O" && label5.getText() == "O" && label9.getText() == "O") {
-			System.out.println("Victoire des O !!");
-			reinitialisation();
-		}
-		if (label7.getText() == "O" && label5.getText() == "O" && label3.getText() == "O") {
-			System.out.println("Victoire des O !!");
+		if (label7.getText() == getForme(tour) && label5.getText() == getForme(tour)
+				&& label3.getText() == getForme(tour)) {
+			System.out.println("Victoire des " + getForme(tour) + " !!");
 			reinitialisation();
 		}
 	}
@@ -173,6 +169,15 @@ public class ControleurJeuTicTacToe implements Initializable {
 				&& label5.getText() != "" && label6.getText() != "" && label7.getText() != "" && label8.getText() != ""
 				&& label9.getText() != "")
 			System.out.println("Match nul !!");
+	}
+
+	public String getForme(int tour) {
+		tour--; // On décremente le tour de 1 car on l'incrémente dans la fonction poseForme()
+				// et nous voulons récupérer le tour qui a été joué
+		if (tour == 1)
+			return "X";
+		else
+			return "O";
 	}
 
 	public void reinitialisation() {

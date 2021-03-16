@@ -22,7 +22,7 @@ public class Client extends Application {
 			Node root = fxmlLoader.load();
 
 			Scene scene = new Scene((VBox) root, 750, 520);
-			scene.getStylesheets().add(getClass().getResource("/css/button.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/mvc/vue/css/button.css").toExternalForm());
 
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Claiwatin");
