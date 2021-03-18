@@ -1,14 +1,19 @@
 package mvc.controleur;
 
-import java.rmi.Naming;
+import java.net.URL;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Region;
-import mvc.modele.JeuInterface;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
 
 public class ControleurMenuPrincipal {
 
@@ -23,7 +28,10 @@ public class ControleurMenuPrincipal {
 	@FXML
 	private Button boutonPendu;
 
-	@FXML
+	/*
+	 * @FXML
+	 */
+	/*
 	public void jeuDuPendu() {
 		try {
 			int port = 8000;
@@ -40,11 +48,30 @@ public class ControleurMenuPrincipal {
 			 * stage.showAndWait(); // Permet, avec le code suivant, de rafraichir la table
 			 * de donnees
 			 */
-		} catch (Exception e) {
+		/*} catch (Exception e) {
 			System.out.println("Client exception: " + e);
 		}
 
-	}
+	}*/
+	
+	@FXML
+    public void jeuDuPendu() {
+        try {
+            URL fxmlURL = getClass().getResource("/mvc/vue/FichePendu.fxml");
+            FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.setTitle("Pendu");
+            stage.setScene(new Scene(root, 400, 500));
+            stage.showAndWait(); // Permet, avec le code suivant, de rafraichir la table de donnees
+        } catch (Exception e) {
+            System.out.println("Client exception: " + e);
+            e.printStackTrace();
+        }
+
+    }
 
 	@FXML
 	public void quitterApplication() {
