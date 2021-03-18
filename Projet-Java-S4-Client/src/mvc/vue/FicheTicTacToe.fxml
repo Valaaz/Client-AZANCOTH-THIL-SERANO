@@ -83,5 +83,10 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Label fx:id="labelJoueur" alignment="CENTER" prefHeight="39.0" prefWidth="500.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </VBox>

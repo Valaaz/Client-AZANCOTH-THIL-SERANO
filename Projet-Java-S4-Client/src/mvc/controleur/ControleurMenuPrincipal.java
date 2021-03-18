@@ -42,7 +42,7 @@ public class ControleurMenuPrincipal {
 			stage.setScene(new Scene(root, 500, 400));
 			stage.showAndWait();
 		} catch (Exception e) {
-			System.out.println("Client exception: " + e);
+			System.out.println("Jeu exception: " + e);
 		}
 
 	}

@@ -29,7 +29,7 @@ public class Client extends Application {
 			primaryStage.show();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Client exception : " + e);
 		}
 	}
 
