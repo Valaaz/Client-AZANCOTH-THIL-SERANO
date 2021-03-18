@@ -20,49 +20,58 @@ public class ControleurJeuTicTacToe implements Initializable {
 	private Label label1, label2, label3, label4, label5, label6, label7, label8, label9, tourJoueur, labelIdPartie;
 
 	private int tour = 1;
-	private int nbJoueur = 0;
 	private int idPartie;
+	private int nbJoueur = 0;
 	private InterfaceTicTacToe intTtt;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		tour = 1;
-		tourJoueur.setText("Au tour du joueur " + tour);
-		label1.setOnMouseClicked(handler);
-		label2.setOnMouseClicked(handler);
-		label3.setOnMouseClicked(handler);
-		label4.setOnMouseClicked(handler);
-		label5.setOnMouseClicked(handler);
-		label6.setOnMouseClicked(handler);
-		label7.setOnMouseClicked(handler);
-		label8.setOnMouseClicked(handler);
-		label9.setOnMouseClicked(handler);
-		label2.setStyle("-fx-border-color: black; -fx-border-style: hidden solid hidden solid;");
-		label5.setStyle("-fx-border-color: black;");
-		label8.setStyle("-fx-border-color: black; -fx-border-style: hidden solid hidden solid;");
-		label4.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
-		label6.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
-
 		try {
 			intTtt = (InterfaceTicTacToe) Naming.lookup("rmi://localhost:8000/tictactoe");
-			System.out.println(intTtt.echo());
 			idPartie = intTtt.numPartie();
-			/*
-			 * if (nbJoueur == 0) { idPartie = intTtt.numPartie(); nbJoueur++; } else if
-			 * (nbJoueur == 1) { idPartie = intTtt.numPartie() - 1; nbJoueur++; } else if
-			 * (nbJoueur == 2) { idPartie = intTtt.numPartie(); nbJoueur++; }
-			 * System.out.println(nbJoueur);
-			 */
+			nbJoueur = intTtt.getNombreJoueur(idPartie);
+			intTtt.setNombreJoueur(idPartie, nbJoueur + 1);
+
+			label2.setStyle("-fx-border-color: black; -fx-border-style: hidden solid hidden solid;");
+			label5.setStyle("-fx-border-color: black;");
+			label8.setStyle("-fx-border-color: black; -fx-border-style: hidden solid hidden solid;");
+			label4.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
+			label6.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
+
+			label1.setText(intTtt.initialisation());
+			label2.setText(intTtt.initialisation());
+			label3.setText(intTtt.initialisation());
+			label4.setText(intTtt.initialisation());
+			label5.setText(intTtt.initialisation());
+			label6.setText(intTtt.initialisation());
+			label7.setText(intTtt.initialisation());
+			label8.setText(intTtt.initialisation());
+			label9.setText(intTtt.initialisation());
+
+			if (intTtt.getNombreJoueur(idPartie) == 1) {
+				tourJoueur.setText("En attente d'un deuxième joueur..");
+			} else {
+				tourJoueur.setText("Au tour du joueur " + tour);
+				label1.setOnMouseClicked(handler);
+				label2.setOnMouseClicked(handler);
+				label3.setOnMouseClicked(handler);
+				label4.setOnMouseClicked(handler);
+				label5.setOnMouseClicked(handler);
+				label6.setOnMouseClicked(handler);
+				label7.setOnMouseClicked(handler);
+				label8.setOnMouseClicked(handler);
+				label9.setOnMouseClicked(handler);
+			}
 
 		} catch (RemoteException | MalformedURLException | NotBoundException e) {
 			System.out.println(e);
 		}
 
+		tour = 1;
 		labelIdPartie.setText("Partie n°" + idPartie);
 	}
 
 	EventHandler<MouseEvent> handler = new EventHandler<MouseEvent>() {
-
 		@Override
 		public void handle(MouseEvent e) {
 			if (e.getSource() == label1 && label1.getText() == "") {
