@@ -117,8 +117,6 @@ public class ControleurJeuTicTacToe implements Initializable {
 		@Override
 		public Void call() {
 			while (partieFinie != true) {
-				if (attente.isDone())
-					System.out.println("ATTENTE FINIE");
 				if (attente.isDone() && numJoueur == 1 || numJoueur == 2) {
 
 					Platform.runLater(new Runnable() {
@@ -130,7 +128,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 					});
 
 					try {
-						TimeUnit.SECONDS.sleep(5);
+						TimeUnit.SECONDS.sleep(2);
 					} catch (InterruptedException e) {
 						System.out.println("Time exception : " + e);
 					}
@@ -143,6 +141,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 	public void tour() {
 		try {
 			labels = intTtt.getLabels(idPartie);
+			tourJoueur.setText("Au tour du joueur " + intTtt.getTourActuel(idPartie));
 
 			label1.setText(labels[0]);
 			label2.setText(labels[1]);
@@ -186,16 +185,16 @@ public class ControleurJeuTicTacToe implements Initializable {
 
 	public void poseForme(Label l) {
 		try {
-			String joueurActuel = "Au tour du joueur ";
+			// String joueurActuel = "Au tour du joueur ";
 			if (intTtt.getTourActuel(idPartie) == 1) {
 				l.setText("X");
-				intTtt.setTourActuel(idPartie, tour + 1);
+				intTtt.setTourActuel(idPartie, 2);
 			} else {
 				l.setText("O");
-				intTtt.setTourActuel(idPartie, tour - 1);
+				intTtt.setTourActuel(idPartie, 1);
 			}
-			joueurActuel += intTtt.getTourActuel(idPartie);
-			tourJoueur.setText(joueurActuel);
+			// joueurActuel += intTtt.getTourActuel(idPartie);
+			// tourJoueur.setText(joueurActuel);
 		} catch (RemoteException e) {
 			System.out.println("Tour exception " + e);
 		}
