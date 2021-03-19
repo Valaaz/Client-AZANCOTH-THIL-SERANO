@@ -8,8 +8,6 @@ import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
-import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,22 +15,18 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import mvc.modele.tictactoe.InterfaceTicTacToe;
 
-public class ControleurJeuTicTacToe implements Initializable {
+public class ControleurJeuTicTacToeBackup implements Initializable, Runnable {
 
 	@FXML
-	private Label label1, label2, label3, label4, label5, label6, label7, label8, label9, labelIdPartie;
-	@FXML
-	private Label tourJoueur = new Label();
-	@FXML
-	private Label labelJoueur = new Label();
+	private Label label1, label2, label3, label4, label5, label6, label7, label8, label9, tourJoueur, labelIdPartie,
+			labelJoueur;
 
 	private int tour = 1;
-	private static int idPartie;
+	private int idPartie;
 	private int nbJoueur = 0;
-	private static InterfaceTicTacToe intTtt;
+	private InterfaceTicTacToe intTtt;
 	private int numJoueur;
 	String[] labels;
-	private boolean partieFinie = false;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -42,6 +36,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 			nbJoueur = intTtt.getNombreJoueur(idPartie);
 			intTtt.setNombreJoueur(idPartie, nbJoueur + 1);
 
+			// tour = 1;
 			labelIdPartie.setText("Partie n°" + idPartie);
 
 			label2.setStyle("-fx-border-color: black; -fx-border-style: hidden solid hidden solid;");
@@ -49,6 +44,18 @@ public class ControleurJeuTicTacToe implements Initializable {
 			label8.setStyle("-fx-border-color: black; -fx-border-style: hidden solid hidden solid;");
 			label4.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
 			label6.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
+
+			/*
+			 * label1.setText(intTtt.initialisation());
+			 * label2.setText(intTtt.initialisation());
+			 * label3.setText(intTtt.initialisation());
+			 * label4.setText(intTtt.initialisation());
+			 * label5.setText(intTtt.initialisation());
+			 * label6.setText(intTtt.initialisation());
+			 * label7.setText(intTtt.initialisation());
+			 * label8.setText(intTtt.initialisation());
+			 * label9.setText(intTtt.initialisation());
+			 */
 
 			label1.setOnMouseClicked(handler);
 			label2.setOnMouseClicked(handler);
@@ -72,73 +79,34 @@ public class ControleurJeuTicTacToe implements Initializable {
 
 			if (intTtt.getNombreJoueur(idPartie) == 1) {
 				tourJoueur.setText("En attente d'un deuxième joueur..");
+				// Thread test = new Thread(new ControleurJeuTicTacToe());
+				// test.start();
+				while (intTtt.getNombreJoueur(idPartie) == 1) {
+					System.out.println("attente..");
+					intTtt.getNombreJoueur(idPartie);
+					TimeUnit.SECONDS.sleep(2);
+				}
 				numJoueur = 1;
-				/*
-				 * new Thread(new Runnable() {
-				 *
-				 * @Override public void run() { Platform.runLater(new Runnable() {
-				 *
-				 * @Override public void run() { try { while (intTtt.getNombreJoueur(idPartie)
-				 * == 1) { System.out.println("en attente.."); TimeUnit.SECONDS.sleep(2); }
-				 * labelJoueur.setText("Vous êtes le joueur " + numJoueur);
-				 * System.out.println("JOUEUR " + numJoueur);
-				 *
-				 * tourJoueur.setText("Au tour du joueur " + intTtt.getTourActuel(idPartie));
-				 *
-				 * intTtt.setTourActuel(idPartie, tour);
-				 *
-				 * } catch (RemoteException | InterruptedException e) { System.out.println(e); }
-				 * } }); } }).start();
-				 */
-				new Thread(attente).start();
 			} else {
 				numJoueur = 2;
-				labelJoueur.setText("Vous êtes le joueur " + numJoueur);
-				System.out.println("JOUEUR " + numJoueur);
-
-				tourJoueur.setText("Au tour du joueur " + intTtt.getTourActuel(idPartie));
-
-				intTtt.setTourActuel(idPartie, tour);
 			}
 
-		} catch (RemoteException | MalformedURLException | NotBoundException e) {
+			labelJoueur.setText("Vous êtes le joueur " + numJoueur);
+			System.out.println("JOUEUR " + numJoueur);
+
+			tourJoueur.setText("Au tour du joueur " + intTtt.getTourActuel(idPartie));
+
+			intTtt.setTourActuel(idPartie, tour);
+
+		} catch (RemoteException | MalformedURLException | NotBoundException | InterruptedException e) {
 			System.out.println("RMI exception" + e);
 		}
-		/*
-		 * if (numJoueur == 1) { while (attente.isRunning()) if (!attente.isRunning())
-		 * new Thread(joue).start(); } else new Thread(joue).start();
-		 */
 
-		new Thread(joue).start();
+		Thread joue = new Thread(new ControleurJeuTicTacToeBackup());
+		joue.start();
+		tour();
 
 	}
-
-	Task<Void> joue = new Task<Void>() {
-		@Override
-		public Void call() {
-			while (partieFinie != true) {
-				if (attente.isDone())
-					System.out.println("ATTENTE FINIE");
-				if (attente.isDone() && numJoueur == 1 || numJoueur == 2) {
-
-					Platform.runLater(new Runnable() {
-
-						@Override
-						public void run() {
-							tour();
-						}
-					});
-
-					try {
-						TimeUnit.SECONDS.sleep(5);
-					} catch (InterruptedException e) {
-						System.out.println("Time exception : " + e);
-					}
-				}
-			}
-			return null;
-		}
-	};
 
 	public void tour() {
 		try {
@@ -201,6 +169,22 @@ public class ControleurJeuTicTacToe implements Initializable {
 		}
 	}
 
+	public void reinitialisation() {
+		System.out.println("Nouvelle partie");
+		tour = 1;
+		tourJoueur.setText("Au tour du joueur " + tour);
+
+		label1.setText("");
+		label2.setText("");
+		label3.setText("");
+		label4.setText("");
+		label5.setText("");
+		label6.setText("");
+		label7.setText("");
+		label8.setText("");
+		label9.setText("");
+	}
+
 	public String getForme(int tour) {
 		tour--; // On décremente le tour de 1 car on l'incrémente dans la fonction poseForme()
 				// et nous voulons récupérer le tour qui a été joué
@@ -257,18 +241,14 @@ public class ControleurJeuTicTacToe implements Initializable {
 				if (intTtt.verificationVictoire(idPartie, tour, label1.getText(), label2.getText(), label3.getText(),
 						label4.getText(), label5.getText(), label6.getText(), label7.getText(), label8.getText(),
 						label9.getText()) == true) {
-					partieFinie = true;
-					// reinitialisation();
+					reinitialisation();
 				}
 				if (intTtt.verificationMatchNul(idPartie, label1.getText(), label2.getText(), label3.getText(),
 						label4.getText(), label5.getText(), label6.getText(), label7.getText(), label8.getText(),
 						label9.getText()) == true) {
-					partieFinie = true;
-					// reinitialisation();
+					reinitialisation();
 				}
-
 				tour();
-
 			} catch (RemoteException re) {
 				System.out.println(re);
 			}
@@ -276,35 +256,41 @@ public class ControleurJeuTicTacToe implements Initializable {
 
 	};
 
-	Task<Void> attente = new Task<Void>() {
-		@Override
-		public Void call() {
-			try {
-				while (intTtt.getNombreJoueur(idPartie) == 1) {
-					System.out.println("en attente..");
+	/*
+	 * @Override public void run() { try { while (nbJoueur == 1) {
+	 * System.out.println("attente.."); nbJoueur = intTtt.getNombreJoueur(idPartie);
+	 * TimeUnit.SECONDS.sleep(2); } } catch (RemoteException | InterruptedException
+	 * e) { System.out.println("Thread exception : " + e); } }
+	 */
+
+	@Override
+	public void run() {
+		try {
+			int tour = 0;
+			while (tour != numJoueur) {
+				if (tour != numJoueur) {
+					System.out.println("en attente du joueur adverse..");
+					tour = intTtt.getTourActuel(idPartie);
+					TimeUnit.SECONDS.sleep(2);
+				} else {
+					System.out.println("Joue son tour");
 					TimeUnit.SECONDS.sleep(2);
 				}
-
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						labelJoueur.setText("Vous êtes le joueur " + numJoueur);
-						System.out.println("JOUEUR " + numJoueur);
-
-						try {
-							tourJoueur.setText("Au tour du joueur " + intTtt.getTourActuel(idPartie));
-							intTtt.setTourActuel(idPartie, tour);
-						} catch (RemoteException e) {
-							e.printStackTrace();
-						}
-					}
-				});
-
-			} catch (RemoteException | InterruptedException e) {
-				System.out.println(e);
 			}
-			return null;
+		} catch (RemoteException | InterruptedException e) {
+			System.out.println("Thread exception : " + e);
 		}
-	};
+	}
+
+	/*
+	 * private static class Joue implements Runnable {
+	 *
+	 * @Override public void run() { try { int tour =
+	 * intTtt.getTourActuel(idPartie); while (tour != numJoueur) {
+	 * System.out.println("en attente du joueur adverse.."); tour =
+	 * intTtt.getTourActuel(idPartie); TimeUnit.SECONDS.sleep(2); } } catch
+	 * (RemoteException | InterruptedException e) {
+	 * System.out.println("Thread exception : " + e); } } }
+	 */
 
 }

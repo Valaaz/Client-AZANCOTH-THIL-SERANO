@@ -43,6 +43,7 @@ public class ControleurMenuPrincipal {
 			stage.showAndWait();
 		} catch (Exception e) {
 			System.out.println("Jeu exception: " + e);
+			e.printStackTrace();
 		}
 
 	}
