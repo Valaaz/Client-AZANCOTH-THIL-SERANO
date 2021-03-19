@@ -90,8 +90,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 				 * } catch (RemoteException | InterruptedException e) { System.out.println(e); }
 				 * } }); } }).start();
 				 */
-				new Thread(task).start();
-
+				new Thread(attente).start();
 			} else {
 				numJoueur = 2;
 				labelJoueur.setText("Vous êtes le joueur " + numJoueur);
@@ -106,47 +105,22 @@ public class ControleurJeuTicTacToe implements Initializable {
 			System.out.println("RMI exception" + e);
 		}
 
-		// new Thread(task).start();
+		new Thread(joue).start();
 	}
 
-	Task<Void> task = new Task<Void>() {
+	Task<Void> joue = new Task<Void>() {
 		@Override
 		public Void call() {
-			try {
-				while (intTtt.getNombreJoueur(idPartie) == 1) {
-					System.out.println("en attente..");
-					TimeUnit.SECONDS.sleep(2);
-				}
+			while (partieFinie != true) {
 
 				Platform.runLater(new Runnable() {
 
 					@Override
 					public void run() {
-						labelJoueur.setText("Vous êtes le joueur " + numJoueur);
-						System.out.println("JOUEUR " + numJoueur);
-
-						try {
-							tourJoueur.setText("Au tour du joueur " + intTtt.getTourActuel(idPartie));
-							intTtt.setTourActuel(idPartie, tour);
-						} catch (RemoteException e) {
-							e.printStackTrace();
-						}
+						tour();
 					}
 				});
 
-			} catch (RemoteException | InterruptedException e) {
-				System.out.println(e);
-			}
-			return null;
-		}
-	};
-
-	Task<Void> joue = new Task<Void>() {
-
-		@Override
-		public Void call() {
-			while (partieFinie != true) {
-				tour();
 				try {
 					TimeUnit.SECONDS.sleep(5);
 				} catch (InterruptedException e) {
@@ -291,6 +265,38 @@ public class ControleurJeuTicTacToe implements Initializable {
 			}
 		}
 
+	};
+
+	Task<Void> attente = new Task<Void>() {
+		@Override
+		public Void call() {
+			try {
+				while (intTtt.getNombreJoueur(idPartie) == 1) {
+					System.out.println("en attente..");
+					TimeUnit.SECONDS.sleep(2);
+				}
+
+				Platform.runLater(new Runnable() {
+
+					@Override
+					public void run() {
+						labelJoueur.setText("Vous êtes le joueur " + numJoueur);
+						System.out.println("JOUEUR " + numJoueur);
+
+						try {
+							tourJoueur.setText("Au tour du joueur " + intTtt.getTourActuel(idPartie));
+							intTtt.setTourActuel(idPartie, tour);
+						} catch (RemoteException e) {
+							e.printStackTrace();
+						}
+					}
+				});
+
+			} catch (RemoteException | InterruptedException e) {
+				System.out.println(e);
+			}
+			return null;
+		}
 	};
 
 }
