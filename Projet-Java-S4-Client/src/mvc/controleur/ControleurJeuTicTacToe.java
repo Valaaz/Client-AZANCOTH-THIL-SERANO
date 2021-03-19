@@ -13,6 +13,8 @@ import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import mvc.modele.tictactoe.InterfaceTicTacToe;
@@ -118,9 +120,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 		public Void call() {
 			while (partieFinie != true) {
 				if (attente.isDone() && numJoueur == 1 || numJoueur == 2) {
-
 					Platform.runLater(new Runnable() {
-
 						@Override
 						public void run() {
 							tour();
@@ -128,7 +128,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 					});
 
 					try {
-						TimeUnit.SECONDS.sleep(2);
+						TimeUnit.SECONDS.sleep(1);
 					} catch (InterruptedException e) {
 						System.out.println("Time exception : " + e);
 					}
@@ -152,8 +152,6 @@ public class ControleurJeuTicTacToe implements Initializable {
 			label7.setText(labels[6]);
 			label8.setText(labels[7]);
 			label9.setText(labels[8]);
-
-			System.out.println("Tour : " + intTtt.getTourActuel(idPartie) + ", Num joueur : " + numJoueur);
 
 			if (intTtt.getTourActuel(idPartie) == 1 && numJoueur == 1
 					|| intTtt.getTourActuel(idPartie) == 2 && numJoueur == 2) {
@@ -257,13 +255,19 @@ public class ControleurJeuTicTacToe implements Initializable {
 						label4.getText(), label5.getText(), label6.getText(), label7.getText(), label8.getText(),
 						label9.getText()) == true) {
 					partieFinie = true;
-					// reinitialisation();
+					if (attente.cancel())
+						System.out.println("--------FIN--------");
+					bloquerLabel();
+					afficheVictoire();
 				}
 				if (intTtt.verificationMatchNul(idPartie, label1.getText(), label2.getText(), label3.getText(),
 						label4.getText(), label5.getText(), label6.getText(), label7.getText(), label8.getText(),
 						label9.getText()) == true) {
 					partieFinie = true;
-					// reinitialisation();
+					if (attente.cancel())
+						System.out.println("--------FIN--------");
+					bloquerLabel();
+					afficheMatchNul();
 				}
 
 				tour();
@@ -272,8 +276,35 @@ public class ControleurJeuTicTacToe implements Initializable {
 				System.out.println(re);
 			}
 		}
-
 	};
+
+	private void afficheVictoire() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Victoire");
+		alert.setHeaderText("Le joueur " + 0 + " a gagné !!");
+		alert.setResizable(false);
+		alert.show();
+	}
+
+	private void afficheMatchNul() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Match nul");
+		alert.setHeaderText("Aucun des deux joueurs n'a gagné.");
+		alert.setResizable(false);
+		alert.show();
+	}
+
+	public void bloquerLabel() {
+		label1.setDisable(true);
+		label2.setDisable(true);
+		label3.setDisable(true);
+		label4.setDisable(true);
+		label5.setDisable(true);
+		label6.setDisable(true);
+		label7.setDisable(true);
+		label8.setDisable(true);
+		label9.setDisable(true);
+	}
 
 	Task<Void> attente = new Task<Void>() {
 		@Override
