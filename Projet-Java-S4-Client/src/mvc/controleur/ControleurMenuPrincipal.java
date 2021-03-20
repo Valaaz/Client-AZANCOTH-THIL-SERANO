@@ -20,13 +20,9 @@ public class ControleurMenuPrincipal {
 	@FXML
 	private MenuItem menuItemQuitter;
 	@FXML
-	private MenuItem menuItemPendu;
+	private MenuItem menuItemPendu, menuItemAllumettes, menuItemTicTacToe;
 	@FXML
-	private MenuItem menuItemAllumettes;
-	@FXML
-	private MenuItem menuItemTicTacToe;
-	@FXML
-	private Button boutonPendu;
+	private Button boutonPendu, boutonTicTacToe;
 
 	@FXML
 	public void jeuDuPendu() {
@@ -38,10 +34,30 @@ public class ControleurMenuPrincipal {
 			Stage stage = new Stage();
 
 			stage.setResizable(false);
-			stage.initModality(Modality.WINDOW_MODAL);
+			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Pendu");
 			stage.setScene(new Scene(root, 500, 400));
-			stage.showAndWait(); // Permet, avec le code suivant, de rafraichir la table de donnees
+			stage.showAndWait();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	public void jeuDuTicTacToe() {
+		try {
+			URL fxmlURL = getClass().getResource("/mvc/vue/FicheTicTacToe.fxml");
+			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
+			Parent root = fxmlLoader.load();
+
+			Stage stage = new Stage();
+
+			stage.setResizable(false);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("TicTacToe");
+			stage.setScene(new Scene(root, 500, 500));
+			stage.showAndWait();
 
 		} catch (IOException e) {
 			e.printStackTrace();
