@@ -34,7 +34,6 @@ public class ControleurJeuTicTacToe implements Initializable {
 	private static InterfaceTicTacToe intTtt;
 	private int numJoueur;
 	String[] labels;
-	private boolean partieFinie = false;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -97,21 +96,21 @@ public class ControleurJeuTicTacToe implements Initializable {
 	Task<Void> joue = new Task<Void>() {
 		@Override
 		public Void call() {
-			while (partieFinie != true) {
-				if (attente.isDone() && numJoueur == 1 || numJoueur == 2) {
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							tour();
-						}
-					});
+			try {
+				while (intTtt.getFinPartie(idPartie) != true) {
+					if (attente.isDone() && numJoueur == 1 || numJoueur == 2) {
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								tour();
+							}
+						});
 
-					try {
 						TimeUnit.SECONDS.sleep(1);
-					} catch (InterruptedException e) {
-						System.out.println("Time exception : " + e);
 					}
 				}
+			} catch (RemoteException | InterruptedException e) {
+				System.out.println("Task joue exception : " + e);
 			}
 			return null;
 		}
@@ -224,20 +223,22 @@ public class ControleurJeuTicTacToe implements Initializable {
 				if (intTtt.verificationVictoire(idPartie, tour, label1.getText(), label2.getText(), label3.getText(),
 						label4.getText(), label5.getText(), label6.getText(), label7.getText(), label8.getText(),
 						label9.getText()) == true) {
-					partieFinie = true;
-					if (attente.cancel())
-						System.out.println("--------FIN--------");
+					// partieFinie = true;
 					bloquerLabel();
 					afficheVictoire();
+					intTtt.setFin(idPartie, true);
+					if (joue.cancel())
+						System.out.println("--------FIN--------");
 				}
 				if (intTtt.verificationMatchNul(idPartie, label1.getText(), label2.getText(), label3.getText(),
 						label4.getText(), label5.getText(), label6.getText(), label7.getText(), label8.getText(),
 						label9.getText()) == true) {
-					partieFinie = true;
-					if (attente.cancel())
-						System.out.println("--------FIN--------");
+					// partieFinie = true;
 					bloquerLabel();
 					afficheMatchNul();
+					intTtt.setFin(idPartie, true);
+					if (joue.cancel())
+						System.out.println("--------FIN--------");
 				}
 
 				tour();
@@ -306,7 +307,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 							tourJoueur.setText("Au tour du joueur " + intTtt.getTourActuel(idPartie));
 							intTtt.setTourActuel(idPartie, tour);
 						} catch (RemoteException e) {
-							e.printStackTrace();
+							System.out.println("Attente exception : " + e);
 						}
 					}
 				});

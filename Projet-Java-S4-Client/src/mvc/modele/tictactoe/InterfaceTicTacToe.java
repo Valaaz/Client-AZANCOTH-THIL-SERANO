@@ -33,4 +33,8 @@ public interface InterfaceTicTacToe extends Remote {
 
 	public String getFormeJoue(int id) throws RemoteException;
 
+	public boolean getFinPartie(int id) throws RemoteException;
+
+	public void setFin(int id, boolean fin) throws RemoteException;
+
 }
