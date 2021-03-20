@@ -97,7 +97,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 		@Override
 		public Void call() {
 			try {
-				while (intTtt.getFinPartie(idPartie) != true) {
+				while (intTtt.getFinPartie(idPartie) == 0) {
 					if (attente.isDone() && numJoueur == 1 || numJoueur == 2) {
 						Platform.runLater(new Runnable() {
 							@Override
@@ -109,9 +109,26 @@ public class ControleurJeuTicTacToe implements Initializable {
 						TimeUnit.SECONDS.sleep(1);
 					}
 				}
+
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						try {
+							bloquerLabel();
+							if (intTtt.getFinPartie(idPartie) == 1)
+								afficheVictoire();
+							else
+								afficheMatchNul();
+						} catch (RemoteException e) {
+							System.out.println(e);
+						}
+					}
+				});
+
 			} catch (RemoteException | InterruptedException e) {
 				System.out.println("Task joue exception : " + e);
 			}
+
 			return null;
 		}
 	};
@@ -161,7 +178,6 @@ public class ControleurJeuTicTacToe implements Initializable {
 
 	public void poseForme(Label l) {
 		try {
-			// String joueurActuel = "Au tour du joueur ";
 			if (intTtt.getTourActuel(idPartie) == 1) {
 				l.setText("X");
 				intTtt.setTourActuel(idPartie, 2);
@@ -169,8 +185,6 @@ public class ControleurJeuTicTacToe implements Initializable {
 				l.setText("O");
 				intTtt.setTourActuel(idPartie, 1);
 			}
-			// joueurActuel += intTtt.getTourActuel(idPartie);
-			// tourJoueur.setText(joueurActuel);
 		} catch (RemoteException e) {
 			System.out.println("Tour exception " + e);
 		}
@@ -224,21 +238,21 @@ public class ControleurJeuTicTacToe implements Initializable {
 						label4.getText(), label5.getText(), label6.getText(), label7.getText(), label8.getText(),
 						label9.getText()) == true) {
 					// partieFinie = true;
-					bloquerLabel();
-					afficheVictoire();
-					intTtt.setFin(idPartie, true);
-					if (joue.cancel())
-						System.out.println("--------FIN--------");
+					// bloquerLabel();
+					// afficheVictoire();
+					intTtt.setFin(idPartie, 1);
+					// if (joue.cancel())
+					// System.out.println("--------FIN--------");
 				}
 				if (intTtt.verificationMatchNul(idPartie, label1.getText(), label2.getText(), label3.getText(),
 						label4.getText(), label5.getText(), label6.getText(), label7.getText(), label8.getText(),
 						label9.getText()) == true) {
 					// partieFinie = true;
-					bloquerLabel();
-					afficheMatchNul();
-					intTtt.setFin(idPartie, true);
-					if (joue.cancel())
-						System.out.println("--------FIN--------");
+					// bloquerLabel();
+					// afficheMatchNul();
+					intTtt.setFin(idPartie, 2);
+					// if (joue.cancel())
+					// System.out.println("--------FIN--------");
 				}
 
 				tour();
@@ -250,6 +264,8 @@ public class ControleurJeuTicTacToe implements Initializable {
 	};
 
 	private void afficheVictoire() {
+		// if (joue.cancel())
+		System.out.println("------FIN Victoire joueur " + numJoueur + " ------");
 		int joueurGagnant = 0;
 
 		try {
@@ -263,15 +279,19 @@ public class ControleurJeuTicTacToe implements Initializable {
 
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Victoire");
-		alert.setHeaderText("Le joueur " + joueurGagnant + " a gagné !!");
+		alert.setHeaderText("Joueur " + numJoueur);
+		alert.setContentText("Le joueur " + joueurGagnant + " a gagné !!");
 		alert.setResizable(false);
 		alert.show();
 	}
 
 	private void afficheMatchNul() {
+		System.out.println("------FIN match nul joueur " + numJoueur + " ------");
+
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Match nul");
-		alert.setHeaderText("Aucun des deux joueurs n'a gagné.");
+		alert.setHeaderText("Joueur " + numJoueur);
+		alert.setContentText("Aucun des deux joueurs n'a gagné.");
 		alert.setResizable(false);
 		alert.show();
 	}
