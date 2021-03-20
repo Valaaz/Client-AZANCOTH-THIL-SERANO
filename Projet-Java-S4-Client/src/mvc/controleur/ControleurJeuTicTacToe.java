@@ -75,27 +75,11 @@ public class ControleurJeuTicTacToe implements Initializable {
 			if (intTtt.getNombreJoueur(idPartie) == 1) {
 				tourJoueur.setText("En attente d'un deuxième joueur..");
 				numJoueur = 1;
-				/*
-				 * new Thread(new Runnable() {
-				 *
-				 * @Override public void run() { Platform.runLater(new Runnable() {
-				 *
-				 * @Override public void run() { try { while (intTtt.getNombreJoueur(idPartie)
-				 * == 1) { System.out.println("en attente.."); TimeUnit.SECONDS.sleep(2); }
-				 * labelJoueur.setText("Vous êtes le joueur " + numJoueur);
-				 * System.out.println("JOUEUR " + numJoueur);
-				 *
-				 * tourJoueur.setText("Au tour du joueur " + intTtt.getTourActuel(idPartie));
-				 *
-				 * intTtt.setTourActuel(idPartie, tour);
-				 *
-				 * } catch (RemoteException | InterruptedException e) { System.out.println(e); }
-				 * } }); } }).start();
-				 */
+
 				new Thread(attente).start();
 			} else {
 				numJoueur = 2;
-				labelJoueur.setText("Vous êtes le joueur " + numJoueur);
+				labelJoueur.setText("Vous êtes le joueur " + numJoueur + ", forme : O");
 				System.out.println("JOUEUR " + numJoueur);
 
 				tourJoueur.setText("Au tour du joueur " + intTtt.getTourActuel(idPartie));
@@ -106,13 +90,8 @@ public class ControleurJeuTicTacToe implements Initializable {
 		} catch (RemoteException | MalformedURLException | NotBoundException e) {
 			System.out.println("RMI exception" + e);
 		}
-		/*
-		 * if (numJoueur == 1) { while (attente.isRunning()) if (!attente.isRunning())
-		 * new Thread(joue).start(); } else new Thread(joue).start();
-		 */
 
 		new Thread(joue).start();
-
 	}
 
 	Task<Void> joue = new Task<Void>() {
@@ -198,54 +177,46 @@ public class ControleurJeuTicTacToe implements Initializable {
 		}
 	}
 
-	public String getForme(int tour) {
-		tour--; // On décremente le tour de 1 car on l'incrémente dans la fonction poseForme()
-				// et nous voulons récupérer le tour qui a été joué
-		if (tour == 1)
-			return "X";
-		else
-			return "O";
-	}
-
 	EventHandler<MouseEvent> handler = new EventHandler<MouseEvent>() {
 		@Override
 		public void handle(MouseEvent e) {
 			try {
 				if (e.getSource() == label1 && label1.getText() == "") {
 					poseForme(label1);
-					labels[0] = getForme(intTtt.getTourActuel(idPartie));
+					// labels[0] = getForme(intTtt.getTourActuel(idPartie));
+					labels[0] = intTtt.getFormeJoue(idPartie);
 				}
 				if (e.getSource() == label2 && label2.getText() == "") {
 					poseForme(label2);
-					labels[1] = getForme(intTtt.getTourActuel(idPartie));
+					labels[1] = intTtt.getFormeJoue(idPartie);
 				}
 				if (e.getSource() == label3 && label3.getText() == "") {
 					poseForme(label3);
-					labels[2] = getForme(intTtt.getTourActuel(idPartie));
+					labels[2] = intTtt.getFormeJoue(idPartie);
 				}
 				if (e.getSource() == label4 && label4.getText() == "") {
 					poseForme(label4);
-					labels[3] = getForme(intTtt.getTourActuel(idPartie));
+					labels[3] = intTtt.getFormeJoue(idPartie);
 				}
 				if (e.getSource() == label5 && label5.getText() == "") {
 					poseForme(label5);
-					labels[4] = getForme(intTtt.getTourActuel(idPartie));
+					labels[4] = intTtt.getFormeJoue(idPartie);
 				}
 				if (e.getSource() == label6 && label6.getText() == "") {
 					poseForme(label6);
-					labels[5] = getForme(intTtt.getTourActuel(idPartie));
+					labels[5] = intTtt.getFormeJoue(idPartie);
 				}
 				if (e.getSource() == label7 && label7.getText() == "") {
 					poseForme(label7);
-					labels[6] = getForme(intTtt.getTourActuel(idPartie));
+					labels[6] = intTtt.getFormeJoue(idPartie);
 				}
 				if (e.getSource() == label8 && label8.getText() == "") {
 					poseForme(label8);
-					labels[7] = getForme(intTtt.getTourActuel(idPartie));
+					labels[7] = intTtt.getFormeJoue(idPartie);
 				}
 				if (e.getSource() == label9 && label9.getText() == "") {
 					poseForme(label9);
-					labels[8] = getForme(intTtt.getTourActuel(idPartie));
+					labels[8] = intTtt.getFormeJoue(idPartie);
 				}
 				e.consume();
 
@@ -318,7 +289,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-						labelJoueur.setText("Vous êtes le joueur " + numJoueur);
+						labelJoueur.setText("Vous êtes le joueur " + numJoueur + ", forme : X");
 						System.out.println("JOUEUR " + numJoueur);
 
 						try {
