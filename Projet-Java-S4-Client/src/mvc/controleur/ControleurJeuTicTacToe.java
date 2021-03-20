@@ -183,7 +183,6 @@ public class ControleurJeuTicTacToe implements Initializable {
 			try {
 				if (e.getSource() == label1 && label1.getText() == "") {
 					poseForme(label1);
-					// labels[0] = getForme(intTtt.getTourActuel(idPartie));
 					labels[0] = intTtt.getFormeJoue(idPartie);
 				}
 				if (e.getSource() == label2 && label2.getText() == "") {
@@ -250,9 +249,20 @@ public class ControleurJeuTicTacToe implements Initializable {
 	};
 
 	private void afficheVictoire() {
+		int joueurGagnant = 0;
+
+		try {
+			if (intTtt.getFormeJoue(idPartie).equals("X"))
+				joueurGagnant = 1;
+			else
+				joueurGagnant = 2;
+		} catch (RemoteException e) {
+			System.out.println(e);
+		}
+
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Victoire");
-		alert.setHeaderText("Le joueur " + 0 + " a gagné !!");
+		alert.setHeaderText("Le joueur " + joueurGagnant + " a gagné !!");
 		alert.setResizable(false);
 		alert.show();
 	}
