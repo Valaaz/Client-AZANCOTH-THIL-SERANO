@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="808.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controleur.ControleurMenuPrincipal">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controleur.ControleurMenuPrincipal">
    <children>
       <MenuBar>
          <menus>
@@ -33,7 +33,7 @@
       </MenuBar>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="813.0" text="Bienvenue sur notre serveur de jeu !" textAlignment="CENTER" textFill="#922727">
          <font>
-            <Font name="Times New Roman" size="36.0" />
+            <Font name="Lucida Bright" size="25.0" />
          </font>
          <VBox.margin>
             <Insets top="15.0" />

@@ -9,14 +9,20 @@ import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
 import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import mvc.modele.tictactoe.InterfaceTicTacToe;
@@ -282,11 +288,30 @@ public class ControleurJeuTicTacToe implements Initializable {
 		}
 
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Victoire");
 		alert.setHeaderText("Joueur " + numJoueur);
 		alert.setContentText("Le joueur " + joueurGagnant + " a gagné !!");
-		alert.setResizable(false);
-		alert.show();
+
+		DialogPane pane = alert.getDialogPane();
+
+		ObjectProperty<ButtonType> result = new SimpleObjectProperty<>();
+		for (ButtonType type : pane.getButtonTypes()) {
+			ButtonType resultValue = type;
+			((Button) pane.lookupButton(type)).setOnAction(e -> {
+				result.set(resultValue);
+				pane.getScene().getWindow().hide();
+			});
+		}
+
+		pane.getScene().setRoot(new Label());
+		Scene scene = new Scene(pane);
+
+		Stage dialog = new Stage();
+		dialog.setScene(scene);
+		dialog.setTitle("Victoire");
+		dialog.setResizable(false);
+		dialog.getIcons().add(new Image("/mvc/vue/images/icon.svg.png"));
+
+		dialog.show();
 	}
 
 	private void afficheMatchNul() {
@@ -296,8 +321,28 @@ public class ControleurJeuTicTacToe implements Initializable {
 		alert.setTitle("Match nul");
 		alert.setHeaderText("Joueur " + numJoueur);
 		alert.setContentText("Aucun des deux joueurs n'a gagné.");
-		alert.setResizable(false);
-		alert.show();
+
+		DialogPane pane = alert.getDialogPane();
+
+		ObjectProperty<ButtonType> result = new SimpleObjectProperty<>();
+		for (ButtonType type : pane.getButtonTypes()) {
+			ButtonType resultValue = type;
+			((Button) pane.lookupButton(type)).setOnAction(e -> {
+				result.set(resultValue);
+				pane.getScene().getWindow().hide();
+			});
+		}
+
+		pane.getScene().setRoot(new Label());
+		Scene scene = new Scene(pane);
+
+		Stage dialog = new Stage();
+		dialog.setScene(scene);
+		dialog.setTitle("Match nul");
+		dialog.setResizable(false);
+		dialog.getIcons().add(new Image("/mvc/vue/images/icon.svg.png"));
+
+		dialog.show();
 	}
 
 	public void bloquerLabel() {

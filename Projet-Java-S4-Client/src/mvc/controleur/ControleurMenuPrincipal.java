@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -36,6 +37,7 @@ public class ControleurMenuPrincipal {
 			stage.setResizable(false);
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Pendu");
+			stage.getIcons().add(new Image("/mvc/vue/images/icon.svg.png"));
 			stage.setScene(new Scene(root, 500, 400));
 			stage.showAndWait();
 
@@ -56,6 +58,7 @@ public class ControleurMenuPrincipal {
 			stage.setResizable(false);
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("TicTacToe");
+			stage.getIcons().add(new Image("/mvc/vue/images/icon.svg.png"));
 			stage.setScene(new Scene(root, 500, 500));
 			stage.showAndWait();
 

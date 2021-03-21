@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -23,7 +24,7 @@ public class Client extends Application {
 
 			Scene scene = new Scene((VBox) root, 750, 520);
 			scene.getStylesheets().add(getClass().getResource("/mvc/vue/css/button.css").toExternalForm());
-
+			primaryStage.getIcons().add(new Image("/mvc/vue/images/icon.svg.png"));
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Claiwatin");
 			primaryStage.show();
