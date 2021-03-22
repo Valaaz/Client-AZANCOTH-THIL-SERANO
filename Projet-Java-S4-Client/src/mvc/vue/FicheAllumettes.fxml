@@ -4,17 +4,17 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane fx:id="nombreAllumettesPossedes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="624.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControleurAllumettes">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="624.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controleur.ControleurAllumettes">
    <children>
       <Label alignment="CENTER" layoutX="-2.0" layoutY="35.0" prefHeight="18.0" prefWidth="634.0" text="Jeu des allumettes" />
       <Label fx:id="compteurAllumettesPartie" layoutX="288.0" layoutY="137.0" text="Compteur" />
       <Label layoutX="230.0" layoutY="240.0" text="Nombre d'allumettes à retirer :" />
-      <Button fx:id="boutonUn" layoutX="255.0" layoutY="287.0" mnemonicParsing="false" onAction="#retirerAllumette" text="1" />
-      <Button fx:id="boutonDeux" layoutX="342.0" layoutY="287.0" mnemonicParsing="false" onAction="#retirerAllumette" text="2" />
+      <Button fx:id="boutonUn" layoutX="255.0" layoutY="287.0" mnemonicParsing="false" onAction="#retirerUneAllumette" text="1" />
+      <Button fx:id="boutonDeux" layoutX="342.0" layoutY="287.0" mnemonicParsing="false" onAction="#retirerDeuxAllumettes" text="2" />
       <Button fx:id="quitter" layoutX="27.0" layoutY="384.0" mnemonicParsing="false" text="Quitter" />
       <Label layoutX="392.0" layoutY="388.0" text="Vous possédez :" />
-      <Label layoutX="488.0" layoutY="388.0" text="x" />
+      <Label fx:id="nombreAllumettesPossedes" layoutX="488.0" layoutY="388.0" text="x" />
       <Label layoutX="517.0" layoutY="388.0" text="allumettes" />
+      <Label fx:id="labelPartie" layoutX="202.0" layoutY="388.0" />
    </children>
 </AnchorPane>

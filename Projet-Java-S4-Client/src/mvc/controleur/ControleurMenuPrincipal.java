@@ -23,7 +23,7 @@ public class ControleurMenuPrincipal {
 	@FXML
 	private MenuItem menuItemPendu, menuItemAllumettes, menuItemTicTacToe;
 	@FXML
-	private Button boutonPendu, boutonTicTacToe;
+	private Button boutonPendu, boutonTicTacToe, boutonAllumette;
 
 	@FXML
 	public void jeuDuPendu() {
@@ -39,6 +39,27 @@ public class ControleurMenuPrincipal {
 			stage.setTitle("Pendu");
 			stage.getIcons().add(new Image("/mvc/vue/images/icon.svg.png"));
 			stage.setScene(new Scene(root, 500, 400));
+			stage.showAndWait();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	public void jeuDesAllumettes() {
+		try {
+			URL fxmlURL = getClass().getResource("/mvc/vue/FicheAllumettes.fxml");
+			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
+			Parent root = fxmlLoader.load();
+
+			Stage stage = new Stage();
+
+			stage.setResizable(false);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("Allumettes");
+			stage.getIcons().add(new Image("/mvc/vue/images/icon.svg.png"));
+			stage.setScene(new Scene(root, 624, 436));
 			stage.showAndWait();
 
 		} catch (IOException e) {

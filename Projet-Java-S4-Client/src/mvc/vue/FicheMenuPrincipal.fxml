@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="808.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controleur.ControleurMenuPrincipal">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controleur.ControleurMenuPrincipal">
    <children>
       <MenuBar>
          <menus>
@@ -64,10 +64,22 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="boutonTicTacToe" contentDisplay="TOP" mnemonicParsing="false" onAction="#jeuDuTicTacToe">
+            <Button fx:id="boutonAllumette" contentDisplay="TOP" mnemonicParsing="false" onAction="#jeuDesAllumettes">
                <padding>
                   <Insets bottom="-10.0" left="-1.0" right="-1.0" top="-10.0" />
                </padding>
+               <graphic>
+                  <ImageView fitHeight="208.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../OneDrive/Bureau/Photos/fond.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="boutonTicTacToe" contentDisplay="TOP" mnemonicParsing="false" onAction="#jeuDuTicTacToe">
                <graphic>
                   <ImageView fitHeight="208.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -79,8 +91,11 @@
                   </ImageView>
                </graphic>
                <HBox.margin>
-                  <Insets left="50.0" />
+                  <Insets />
                </HBox.margin>
+               <padding>
+                  <Insets bottom="-10.0" left="-1.0" right="-1.0" top="-10.0" />
+               </padding>
             </Button>
          </children>
       </HBox>
