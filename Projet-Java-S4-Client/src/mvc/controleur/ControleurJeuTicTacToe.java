@@ -24,6 +24,7 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import mvc.modele.tictactoe.InterfaceTicTacToe;
 
@@ -190,9 +191,11 @@ public class ControleurJeuTicTacToe implements Initializable {
 		try {
 			if (intTtt.getTourActuel(idPartie) == 1) {
 				l.setText("X");
+				l.setTextFill(Color.BLUE);
 				intTtt.setTourActuel(idPartie, 2);
 			} else {
 				l.setText("O");
+				l.setTextFill(Color.RED);
 				intTtt.setTourActuel(idPartie, 1);
 			}
 		} catch (RemoteException e) {
@@ -247,22 +250,12 @@ public class ControleurJeuTicTacToe implements Initializable {
 				if (intTtt.verificationVictoire(idPartie, tour, label1.getText(), label2.getText(), label3.getText(),
 						label4.getText(), label5.getText(), label6.getText(), label7.getText(), label8.getText(),
 						label9.getText()) == true) {
-					// partieFinie = true;
-					// bloquerLabel();
-					// afficheVictoire();
 					intTtt.setFin(idPartie, 1);
-					// if (joue.cancel())
-					// System.out.println("--------FIN--------");
 				}
 				if (intTtt.verificationMatchNul(idPartie, label1.getText(), label2.getText(), label3.getText(),
 						label4.getText(), label5.getText(), label6.getText(), label7.getText(), label8.getText(),
 						label9.getText()) == true) {
-					// partieFinie = true;
-					// bloquerLabel();
-					// afficheMatchNul();
 					intTtt.setFin(idPartie, 2);
-					// if (joue.cancel())
-					// System.out.println("--------FIN--------");
 				}
 
 				tour();
@@ -274,7 +267,6 @@ public class ControleurJeuTicTacToe implements Initializable {
 	};
 
 	private void afficheVictoire() {
-		// if (joue.cancel())
 		System.out.println("------FIN Victoire joueur " + numJoueur + " ------");
 		int joueurGagnant = 0;
 
