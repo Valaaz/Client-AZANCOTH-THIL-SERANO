@@ -74,7 +74,9 @@ public class ControleurMenuPrincipal {
 			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
 			Parent root = fxmlLoader.load();
 
+			ControleurJeuTicTacToe jeuTtt = fxmlLoader.getController();
 			Stage stage = new Stage();
+			stage.setOnCloseRequest(e -> jeuTtt.quitter());
 
 			stage.setResizable(false);
 			stage.initModality(Modality.APPLICATION_MODAL);
