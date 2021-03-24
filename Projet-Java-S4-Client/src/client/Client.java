@@ -27,6 +27,9 @@ public class Client extends Application {
 			primaryStage.getIcons().add(new Image("/mvc/vue/images/icon.svg.png"));
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Claiwatin");
+			primaryStage.centerOnScreen();
+			primaryStage.setMinWidth(1000);
+			primaryStage.setMinHeight(520);
 			primaryStage.show();
 
 		} catch (Exception e) {
