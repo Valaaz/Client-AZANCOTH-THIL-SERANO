@@ -131,13 +131,17 @@ public class ControleurJeuTicTacToe implements Initializable {
 					public void run() {
 						try {
 							bloquerLabel();
-							if (intTtt.getFinPartie(idPartie) == 1)
+							if (intTtt.getFinPartie(idPartie) == 1) {
+								majLabels();
+								TimeUnit.SECONDS.sleep(1);
 								afficheVictoire();
-							else if (intTtt.getFinPartie(idPartie) == 2)
+							} else if (intTtt.getFinPartie(idPartie) == 2) {
+								majLabels();
+								TimeUnit.SECONDS.sleep(1);
 								afficheMatchNul();
-							else
+							} else
 								quitterMatch();
-						} catch (RemoteException e) {
+						} catch (RemoteException | InterruptedException e) {
 							System.out.println(e);
 						}
 					}
@@ -153,18 +157,8 @@ public class ControleurJeuTicTacToe implements Initializable {
 
 	public void tour() {
 		try {
-			labels = intTtt.getLabels(idPartie);
+			majLabels();
 			tourJoueur.setText("Au tour du joueur " + intTtt.getTourActuel(idPartie));
-
-			label1.setText(labels[0]);
-			label2.setText(labels[1]);
-			label3.setText(labels[2]);
-			label4.setText(labels[3]);
-			label5.setText(labels[4]);
-			label6.setText(labels[5]);
-			label7.setText(labels[6]);
-			label8.setText(labels[7]);
-			label9.setText(labels[8]);
 
 			if (intTtt.getTourActuel(idPartie) == 1 && numJoueur == 1
 					|| intTtt.getTourActuel(idPartie) == 2 && numJoueur == 2) {
@@ -430,6 +424,20 @@ public class ControleurJeuTicTacToe implements Initializable {
 			return null;
 		}
 	};
+
+	public void majLabels() throws RemoteException {
+		labels = intTtt.getLabels(idPartie);
+
+		label1.setText(labels[0]);
+		label2.setText(labels[1]);
+		label3.setText(labels[2]);
+		label4.setText(labels[3]);
+		label5.setText(labels[4]);
+		label6.setText(labels[5]);
+		label7.setText(labels[6]);
+		label8.setText(labels[7]);
+		label9.setText(labels[8]);
+	}
 
 	@FXML
 	public void quitter() {
