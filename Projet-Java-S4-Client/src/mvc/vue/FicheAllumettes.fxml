@@ -11,7 +11,7 @@
       <Label layoutX="230.0" layoutY="240.0" text="Nombre d'allumettes à retirer :" />
       <Button fx:id="boutonUn" layoutX="255.0" layoutY="287.0" mnemonicParsing="false" onAction="#retirerUneAllumette" text="1" />
       <Button fx:id="boutonDeux" layoutX="342.0" layoutY="287.0" mnemonicParsing="false" onAction="#retirerDeuxAllumettes" text="2" />
-      <Button fx:id="quitter" layoutX="27.0" layoutY="384.0" mnemonicParsing="false" text="Quitter" />
+      <Button fx:id="boutonQuitter" layoutX="27.0" layoutY="384.0" mnemonicParsing="false" onAction="#quitter" text="Quitter" />
       <Label layoutX="392.0" layoutY="388.0" text="Vous possédez :" />
       <Label fx:id="nombreAllumettesPossedes" layoutX="488.0" layoutY="388.0" text="x" />
       <Label layoutX="517.0" layoutY="388.0" text="allumettes" />
