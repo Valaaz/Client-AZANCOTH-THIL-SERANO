@@ -131,6 +131,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 					public void run() {
 						try {
 							bloquerLabel();
+							tourJoueur.setText("Fin de la partie");
 							if (intTtt.getFinPartie(idPartie) == 1) {
 								majLabels();
 								TimeUnit.SECONDS.sleep(1);
