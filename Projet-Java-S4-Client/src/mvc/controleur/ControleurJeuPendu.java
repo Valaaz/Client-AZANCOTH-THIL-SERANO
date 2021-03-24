@@ -9,11 +9,14 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
 import mvc.modele.pendu.InterfacePendu;
 
 public class ControleurJeuPendu implements Initializable {
@@ -48,7 +51,6 @@ public class ControleurJeuPendu implements Initializable {
 			pendu = (InterfacePendu) Naming.lookup("rmi://localhost:8000/pendu");
 			idPartie = pendu.nouvellePartie();
 			initialisationInterface();
-			// Valentin
 			pendu.generationMotAleatoire(idPartie);
 			mot = pendu.getMotAleatoire(idPartie);
 			System.out.println("Mot aléatoire de la partie n°" + idPartie + " : " + mot);
@@ -263,14 +265,31 @@ public class ControleurJeuPendu implements Initializable {
 	}
 
 	public void contientLettre(char lettre) throws RemoteException {
+	if (pendu.partieTerminee(idPartie)) affichageFin(); 	
+	else {
 		pendu.ecritLettres(idPartie, lettre);
-		// pendu.setMotCache(idPartie, motCache);
 		labelMot.setText(pendu.affichage(idPartie));
 		nbErreurs = pendu.dessinerPendu(idPartie);
 		ajoutTraitPendu(nbErreurs);
+		if (pendu.partieTerminee(idPartie)) affichageFin();
+	}
+	}
+	
+	public void affichageFin() throws RemoteException {
+		if (pendu.dessinerPendu(idPartie)>=11) {
+			labelMot.setFont(new Font("System", 18));
+			labelMot.setText("Vous avez perdu ! Le mot était : " + mot); 
+		}
+		else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Félicitations");
+			alert.setHeaderText("Félicitations !");
+			alert.setContentText("Vous avez gagné ! Le mot était bien " + mot);
+			alert.show(); 
+		}
 	}
 
-	public void ajoutTraitPendu(int nbErreurs) {
+	public void ajoutTraitPendu(int nbErreurs) throws RemoteException {
 		switch (nbErreurs) {
 		case 1: {
 			pendu1.setVisible(true);
@@ -314,6 +333,7 @@ public class ControleurJeuPendu implements Initializable {
 		}
 		case 11: {
 			pendu11.setVisible(true);
+			affichageFin(); 
 			break;
 		}
 		}
