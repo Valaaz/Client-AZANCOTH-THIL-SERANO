@@ -5,11 +5,12 @@ import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -20,62 +21,74 @@ public class ControleurAllumettes implements Initializable {
 	private InterfaceAllumettes allumette;
 
 	@FXML
-	private Button boutonUn, boutonDeux, quitter;
+	private Button boutonUn, boutonDeux, boutonQuitter;
 
 	@FXML
 	private Label nombreAllumettesPossedes, compteurAllumettesPartie, labelPartie;
 
-	int nbAllumette = 0;
+	int nbAllumettesJoueur = 0;
 	int nbAllumettesPartie = 0;
 	int idPartie;
 
-	@FXML
-	void retirerUneAllumette() {
-
-		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
-		nombreAllumettesPossedes.setText("" + nbAllumette);
-
+	public void finDePartie() {
 		if (nbAllumettesPartie == 0) {
-			System.out.println("Fin de la partie");
+			boutonUn.setDisable(true);
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Partie Terminée");
+			alert.setHeaderText("Partie Terminée");
+			alert.setContentText("Partie terminée");
+			alert.show();
 		}
 
-		else {
-			IA();
+		if (nbAllumettesPartie < 2) {
+			boutonDeux.setDisable(true);
 		}
 	}
 
 	@FXML
-	void retirerDeuxAllumettes() {
+	void retirerUneAllumette() throws RemoteException {
+
+		allumette.soustraireAllumettes(idPartie, 1);
+
+		allumette.setNombreAllumettesJoueur(idPartie, nbAllumettesJoueur + 1);
+
+		nbAllumettesPartie = allumette.getNbAllumettePartie(idPartie);
+		nbAllumettesJoueur = allumette.getNombreAllumettesJoueur(idPartie);
+
+		finDePartie();
 
 		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
-		nombreAllumettesPossedes.setText("" + nbAllumette);
+		nombreAllumettesPossedes.setText("" + nbAllumettesJoueur);
 
-		if (nbAllumettesPartie == 0) {
-			System.out.println("Fin de la partie");
-		}
-
-		else {
-			IA();
-		}
 	}
 
-	public void IA() {
-		/*
-		 * int nbAllumetteRetirer = Random.nextInt(1) + 1; // TODO fonction permettant
-		 * // de prendre un nb aléatoire // d'allumettes
-		 *
-		 * nbAllumette += nbAllumRetirer; nbAllumettesPartie =
-		 * Integer.parseInt(compteurAllumettesPartie.getText()); nbAllumettesPartie -=
-		 * nbAllumRetirer;
-		 */
+	@FXML
+	void retirerDeuxAllumettes() throws RemoteException {
+
+		allumette.soustraireAllumettes(idPartie, 2);
+
+		allumette.setNombreAllumettesJoueur(idPartie, nbAllumettesJoueur + 2);
+
+		nbAllumettesPartie = allumette.getNbAllumettePartie(idPartie);
+		nbAllumettesJoueur = allumette.getNombreAllumettesJoueur(idPartie);
+
+		finDePartie();
 
 		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
-		nombreAllumettesPossedes.setText("" + nbAllumette);
+		nombreAllumettesPossedes.setText("" + nbAllumettesJoueur);
+	}
+
+	public void IA() throws RemoteException {
+
+		allumette.coupIA();
+
+		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
+		nombreAllumettesPossedes.setText("" + nbAllumettesJoueur);
 
 		if (nbAllumettesPartie == 0) {
 			System.out.println("Fin de la partie");
 		} else if (nbAllumettesPartie == 1) {
-			boutonDeux.setDisable(true);
+			boutonDeux.setDisable(true); // si il reste une allumette, désactiver le bouton 2
 		}
 
 	}
@@ -84,8 +97,11 @@ public class ControleurAllumettes implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		try {
+
 			allumette = (InterfaceAllumettes) Naming.lookup("rmi://localhost:8000/allumette");
 			idPartie = allumette.nouvellePartie();
+			nbAllumettesPartie = allumette.generationAleatoireAllumettes(idPartie);
+			allumette.setNbAllumettePartie(idPartie, nbAllumettesPartie);
 
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			System.out.println("Init : " + e);
@@ -93,14 +109,10 @@ public class ControleurAllumettes implements Initializable {
 
 		labelPartie.setText("Partie n°" + idPartie);
 
-		nbAllumette = 0;
-		nbAllumettesPartie = new Random().nextInt(12) + 7; // genere un nombre d'allumettes entre 7 et 19
-		if (nbAllumettesPartie % 2 == 0) {
-			nbAllumettesPartie++;
-		}
+		nbAllumettesJoueur = 0;
 
 		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
-		nombreAllumettesPossedes.setText("" + nbAllumette);
+		nombreAllumettesPossedes.setText("" + nbAllumettesJoueur);
 
 		boutonDeux.setDisable(false);
 
@@ -109,8 +121,9 @@ public class ControleurAllumettes implements Initializable {
 	@FXML
 	public void quitter() {
 
-		Stage stage = (Stage) quitter.getScene().getWindow();
+		Stage stage = (Stage) boutonQuitter.getScene().getWindow();
 		stage.close();
+		System.out.println("Jeu canceled");
 	}
 
 }
