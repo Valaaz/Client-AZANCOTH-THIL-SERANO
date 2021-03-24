@@ -23,4 +23,8 @@ public interface InterfaceAllumettes extends Remote {
 
 	void setNombreAllumettesJoueur(int id, int nbAllumettesJoueur) throws RemoteException;
 
+	int getTour(int id) throws RemoteException;
+
+	void setTour(int id, int tour) throws RemoteException;
+
 }

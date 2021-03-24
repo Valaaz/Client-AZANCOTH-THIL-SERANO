@@ -78,20 +78,31 @@ public class ControleurAllumettes implements Initializable {
 		nombreAllumettesPossedes.setText("" + nbAllumettesJoueur);
 	}
 
-	public void IA() throws RemoteException {
-
-		allumette.coupIA();
-
-		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
-		nombreAllumettesPossedes.setText("" + nbAllumettesJoueur);
-
-		if (nbAllumettesPartie == 0) {
-			System.out.println("Fin de la partie");
-		} else if (nbAllumettesPartie == 1) {
-			boutonDeux.setDisable(true); // si il reste une allumette, désactiver le bouton 2
+	public void tour(int id) throws RemoteException {
+		if (allumette.getTour(idPartie) == 1) {
+			boutonUn.setDisable(false);
+			boutonDeux.setDisable(false);
+			// TODO label a créer pour "a votre tour...
+		} else {
+			allumette.coupIA();
 		}
 
 	}
+
+	/*
+	 * public void IA() throws RemoteException {
+	 * 
+	 * allumette.coupIA();
+	 * 
+	 * compteurAllumettesPartie.setText("" + nbAllumettesPartie);
+	 * nombreAllumettesPossedes.setText("" + nbAllumettesJoueur);
+	 * 
+	 * if (nbAllumettesPartie == 0) { System.out.println("Fin de la partie"); } else
+	 * if (nbAllumettesPartie == 1) { boutonDeux.setDisable(true); // si il reste
+	 * une allumette, désactiver le bouton 2 }
+	 * 
+	 * }
+	 */
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
