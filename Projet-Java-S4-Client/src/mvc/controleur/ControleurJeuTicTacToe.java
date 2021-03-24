@@ -158,7 +158,11 @@ public class ControleurJeuTicTacToe implements Initializable {
 	public void tour() {
 		try {
 			majLabels();
-			tourJoueur.setText("Au tour du joueur " + intTtt.getTourActuel(idPartie));
+
+			if (intTtt.getTourActuel(idPartie) == numJoueur)
+				tourJoueur.setText("A votre tour");
+			else
+				tourJoueur.setText("Tour de l'adversaire");
 
 			if (intTtt.getTourActuel(idPartie) == 1 && numJoueur == 1
 					|| intTtt.getTourActuel(idPartie) == 2 && numJoueur == 2) {
