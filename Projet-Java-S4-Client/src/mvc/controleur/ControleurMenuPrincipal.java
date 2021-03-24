@@ -38,7 +38,7 @@ public class ControleurMenuPrincipal {
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Pendu");
 			stage.getIcons().add(new Image("/mvc/vue/images/icon.svg.png"));
-			stage.setScene(new Scene(root, 500, 400));
+			stage.setScene(new Scene(root, 500, 500));
 			stage.showAndWait();
 
 		} catch (IOException e) {
@@ -74,7 +74,9 @@ public class ControleurMenuPrincipal {
 			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
 			Parent root = fxmlLoader.load();
 
+			ControleurJeuTicTacToe jeuTtt = fxmlLoader.getController();
 			Stage stage = new Stage();
+			stage.setOnCloseRequest(e -> jeuTtt.quitter());
 
 			stage.setResizable(false);
 			stage.initModality(Modality.APPLICATION_MODAL);

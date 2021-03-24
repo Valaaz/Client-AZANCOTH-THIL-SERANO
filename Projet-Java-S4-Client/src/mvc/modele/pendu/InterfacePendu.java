@@ -7,19 +7,12 @@ public interface InterfacePendu extends Remote {
 
 	public String affichage(int id) throws RemoteException;
 
-	// public String generationMotAleatoire() throws RemoteException;
-
-	// public char[] ecritLettres(String mot, char c, char[] motDecompose) throws
-	// RemoteException;
-
-	// public int dessinerPendu() throws RemoteException;
-
 	public void setNombreErreurs(int id, int nb) throws RemoteException;
 
 	public int dessinerPendu(int id) throws RemoteException;
 
-	// public boolean partieTerminee(int idPartie) throws RemoteException;
-
+	public boolean partieTerminee(int id) throws RemoteException;
+	
 	public int nouvellePartie() throws RemoteException;
 
 	public void generationMotAleatoire(int id) throws RemoteException;

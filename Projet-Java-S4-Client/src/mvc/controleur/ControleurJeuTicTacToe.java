@@ -25,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mvc.modele.tictactoe.InterfaceTicTacToe;
 
@@ -32,6 +33,9 @@ public class ControleurJeuTicTacToe implements Initializable {
 
 	@FXML
 	private Label label1, label2, label3, label4, label5, label6, label7, label8, label9, labelIdPartie;
+
+	// Ces 2 labels doivent être instanciés avec le "new Label()" pour ne pas
+	// générer un "NullPointerException" dans les threads
 	@FXML
 	private Label tourJoueur = new Label();
 	@FXML
@@ -44,6 +48,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 	private int nbJoueur = 0;
 	private InterfaceTicTacToe intTtt;
 	private int numJoueur;
+	// Tableau des 9 labels de la grille
 	String[] labels;
 
 	@Override
@@ -128,8 +133,10 @@ public class ControleurJeuTicTacToe implements Initializable {
 							bloquerLabel();
 							if (intTtt.getFinPartie(idPartie) == 1)
 								afficheVictoire();
-							else
+							else if (intTtt.getFinPartie(idPartie) == 2)
 								afficheMatchNul();
+							else
+								quitterMatch();
 						} catch (RemoteException e) {
 							System.out.println(e);
 						}
@@ -252,9 +259,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 						label9.getText()) == true) {
 					intTtt.setFin(idPartie, 1);
 				}
-				if (intTtt.verificationMatchNul(idPartie, label1.getText(), label2.getText(), label3.getText(),
-						label4.getText(), label5.getText(), label6.getText(), label7.getText(), label8.getText(),
-						label9.getText()) == true) {
+				if (intTtt.verificationMatchNul(idPartie) == true) {
 					intTtt.setFin(idPartie, 2);
 				}
 
@@ -268,20 +273,30 @@ public class ControleurJeuTicTacToe implements Initializable {
 
 	private void afficheVictoire() {
 		System.out.println("------FIN Victoire joueur " + numJoueur + " ------");
-		int joueurGagnant = 0;
+
+		Alert alert = new Alert(AlertType.INFORMATION);
 
 		try {
-			if (intTtt.getFormeJoue(idPartie).equals("X"))
-				joueurGagnant = 1;
-			else
-				joueurGagnant = 2;
+			if (intTtt.getFormeJoue(idPartie).equals("X")) {
+				if (numJoueur == 1) {
+					alert.setContentText("Vous avez gagné !!");
+					alert.setHeaderText("Victoire");
+				} else {
+					alert.setContentText("Vous avez perdu..");
+					alert.setHeaderText("Défaite");
+				}
+			} else {
+				if (numJoueur == 1) {
+					alert.setContentText("Vous avez perdu..");
+					alert.setHeaderText("Défaite");
+				} else {
+					alert.setContentText("Vous avez gagné !!");
+					alert.setHeaderText("Victoire");
+				}
+			}
 		} catch (RemoteException e) {
 			System.out.println(e);
 		}
-
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setHeaderText("Joueur " + numJoueur);
-		alert.setContentText("Le joueur " + joueurGagnant + " a gagné !!");
 
 		DialogPane pane = alert.getDialogPane();
 
@@ -298,8 +313,9 @@ public class ControleurJeuTicTacToe implements Initializable {
 		Scene scene = new Scene(pane);
 
 		Stage dialog = new Stage();
+		dialog.setTitle("Joueur " + numJoueur);
+		dialog.initModality(Modality.APPLICATION_MODAL);
 		dialog.setScene(scene);
-		dialog.setTitle("Victoire");
 		dialog.setResizable(false);
 		dialog.getIcons().add(new Image("/mvc/vue/images/icon.svg.png"));
 
@@ -329,12 +345,47 @@ public class ControleurJeuTicTacToe implements Initializable {
 		Scene scene = new Scene(pane);
 
 		Stage dialog = new Stage();
+		dialog.initModality(Modality.APPLICATION_MODAL);
 		dialog.setScene(scene);
 		dialog.setTitle("Match nul");
 		dialog.setResizable(false);
 		dialog.getIcons().add(new Image("/mvc/vue/images/icon.svg.png"));
 
 		dialog.show();
+	}
+
+	private void quitterMatch() {
+		System.out.println("------FIN joueur quitte ------");
+
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Un joueur a quitté le match");
+		alert.setHeaderText("Joueur " + numJoueur);
+		alert.setContentText("Votre adversaire a quitté la partie");
+
+		DialogPane pane = alert.getDialogPane();
+
+		ObjectProperty<ButtonType> result = new SimpleObjectProperty<>();
+		for (ButtonType type : pane.getButtonTypes()) {
+			ButtonType resultValue = type;
+			((Button) pane.lookupButton(type)).setOnAction(e -> {
+				result.set(resultValue);
+				pane.getScene().getWindow().hide();
+			});
+		}
+
+		pane.getScene().setRoot(new Label());
+		Scene scene = new Scene(pane);
+
+		Stage dialog = new Stage();
+		dialog.initModality(Modality.APPLICATION_MODAL);
+		dialog.setScene(scene);
+		dialog.setResizable(false);
+		dialog.getIcons().add(new Image("/mvc/vue/images/icon.svg.png"));
+
+		dialog.showAndWait();
+
+		Stage stage = (Stage) btnQuitter.getScene().getWindow();
+		stage.close();
 	}
 
 	public void bloquerLabel() {
@@ -386,6 +437,13 @@ public class ControleurJeuTicTacToe implements Initializable {
 			System.out.println("Attente cancel");
 		if (joue.cancel())
 			System.out.println("Joue cancel");
+
+		try {
+			intTtt.setFin(idPartie, 3);
+		} catch (RemoteException e) {
+			System.out.println(e);
+		}
+
 		Stage stage = (Stage) btnQuitter.getScene().getWindow();
 		stage.close();
 	}
