@@ -255,9 +255,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 						label9.getText()) == true) {
 					intTtt.setFin(idPartie, 1);
 				}
-				if (intTtt.verificationMatchNul(idPartie, label1.getText(), label2.getText(), label3.getText(),
-						label4.getText(), label5.getText(), label6.getText(), label7.getText(), label8.getText(),
-						label9.getText()) == true) {
+				if (intTtt.verificationMatchNul(idPartie) == true) {
 					intTtt.setFin(idPartie, 2);
 				}
 
