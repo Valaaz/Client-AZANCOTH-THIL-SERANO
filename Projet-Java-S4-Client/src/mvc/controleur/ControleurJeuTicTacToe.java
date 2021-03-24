@@ -33,6 +33,9 @@ public class ControleurJeuTicTacToe implements Initializable {
 
 	@FXML
 	private Label label1, label2, label3, label4, label5, label6, label7, label8, label9, labelIdPartie;
+
+	// Ces 2 labels doivent être instanciés avec le "new Label()" pour ne pas
+	// générer un "NullPointerException" dans les threads
 	@FXML
 	private Label tourJoueur = new Label();
 	@FXML
@@ -45,6 +48,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 	private int nbJoueur = 0;
 	private InterfaceTicTacToe intTtt;
 	private int numJoueur;
+	// Tableau des 9 labels de la grille
 	String[] labels;
 
 	@Override
@@ -269,20 +273,30 @@ public class ControleurJeuTicTacToe implements Initializable {
 
 	private void afficheVictoire() {
 		System.out.println("------FIN Victoire joueur " + numJoueur + " ------");
-		int joueurGagnant = 0;
+
+		Alert alert = new Alert(AlertType.INFORMATION);
 
 		try {
-			if (intTtt.getFormeJoue(idPartie).equals("X"))
-				joueurGagnant = 1;
-			else
-				joueurGagnant = 2;
+			if (intTtt.getFormeJoue(idPartie).equals("X")) {
+				if (numJoueur == 1) {
+					alert.setContentText("Vous avez gagné !!");
+					alert.setHeaderText("Victoire");
+				} else {
+					alert.setContentText("Vous avez perdu..");
+					alert.setHeaderText("Défaite");
+				}
+			} else {
+				if (numJoueur == 1) {
+					alert.setContentText("Vous avez perdu..");
+					alert.setHeaderText("Défaite");
+				} else {
+					alert.setContentText("Vous avez gagné !!");
+					alert.setHeaderText("Victoire");
+				}
+			}
 		} catch (RemoteException e) {
 			System.out.println(e);
 		}
-
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setHeaderText("Joueur " + numJoueur);
-		alert.setContentText("Le joueur " + joueurGagnant + " a gagné !!");
 
 		DialogPane pane = alert.getDialogPane();
 
@@ -299,9 +313,9 @@ public class ControleurJeuTicTacToe implements Initializable {
 		Scene scene = new Scene(pane);
 
 		Stage dialog = new Stage();
+		dialog.setTitle("Joueur " + numJoueur);
 		dialog.initModality(Modality.APPLICATION_MODAL);
 		dialog.setScene(scene);
-		dialog.setTitle("Victoire");
 		dialog.setResizable(false);
 		dialog.getIcons().add(new Image("/mvc/vue/images/icon.svg.png"));
 
