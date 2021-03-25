@@ -34,8 +34,8 @@ public class ControleurJeuTicTacToe implements Initializable {
 	@FXML
 	private Label label1, label2, label3, label4, label5, label6, label7, label8, label9, labelIdPartie;
 
-	// Ces 2 labels doivent �tre instanci�s avec le "new Label()" pour ne pas
-	// g�n�rer un "NullPointerException" dans les threads
+	// Ces 2 labels doivent être instanciés avec le "new Label()" pour ne pas
+	// générer un "NullPointerException" dans les threads
 	@FXML
 	private Label tourJoueur = new Label();
 	@FXML
@@ -64,13 +64,20 @@ public class ControleurJeuTicTacToe implements Initializable {
 			nbJoueur = intTtt.getNombreJoueur(idPartie);
 			System.out.println("Nb joueur : " + nbJoueur);
 
-			labelIdPartie.setText("Partie n�" + idPartie);
+			labelIdPartie.setText("Partie n°" + idPartie);
 
 			label2.setStyle("-fx-border-color: black; -fx-border-style: hidden solid hidden solid;");
 			label5.setStyle("-fx-border-color: black;");
 			label8.setStyle("-fx-border-color: black; -fx-border-style: hidden solid hidden solid;");
 			label4.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
 			label6.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
+
+			labels = intTtt.getLabels(idPartie);
+
+			for (int i = 0; i < 9; i++)
+				labels[i] = "";
+
+			intTtt.setLabels(idPartie, labels);
 
 			label1.setOnMouseClicked(handler);
 			label2.setOnMouseClicked(handler);
@@ -93,13 +100,13 @@ public class ControleurJeuTicTacToe implements Initializable {
 			label9.setDisable(true);
 
 			if (intTtt.getNombreJoueur(idPartie) == 1) {
-				tourJoueur.setText("En attente d'un deuxi�me joueur..");
+				tourJoueur.setText("En attente d'un deuxième joueur..");
 				numJoueur = 1;
 
 				new Thread(attente).start();
 			} else {
 				numJoueur = 2;
-				labelJoueur.setText("Vous �tes le joueur " + numJoueur + ", forme : O");
+				labelJoueur.setText("Vous êtes le joueur " + numJoueur + ", forme : O");
 				System.out.println("JOUEUR " + numJoueur);
 
 				tourJoueur.setText("Au tour du joueur " + intTtt.getTourActuel(idPartie));
@@ -154,7 +161,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 				});
 
 			} catch (RemoteException | InterruptedException e) {
-				System.out.println("Task joue exception : " + e);
+				// System.out.println("Task joue exception : " + e);
 			}
 
 			return null;
@@ -287,7 +294,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 					alert.setHeaderText("Victoire");
 				} else {
 					alert.setContentText("Vous avez perdu..");
-					alert.setHeaderText("D�faite");
+					alert.setHeaderText("Défaite");
 				}
 			} else {
 				if (numJoueur == 1) {
@@ -332,7 +339,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Match nul");
 		alert.setHeaderText("Joueur " + numJoueur);
-		alert.setContentText("Aucun des deux joueurs n'a gagn�.");
+		alert.setContentText("Aucun des deux joueurs n'a gagné.");
 
 		DialogPane pane = alert.getDialogPane();
 
@@ -362,9 +369,9 @@ public class ControleurJeuTicTacToe implements Initializable {
 		System.out.println("------FIN joueur quitte ------");
 
 		Alert alert = new Alert(AlertType.WARNING);
-		alert.setTitle("Un joueur a quitt� le match");
+		alert.setTitle("Un joueur a quitté le match");
 		alert.setHeaderText("Joueur " + numJoueur);
-		alert.setContentText("Votre adversaire a quitt� la partie");
+		alert.setContentText("Votre adversaire a quitté la partie");
 
 		DialogPane pane = alert.getDialogPane();
 
@@ -416,7 +423,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-						labelJoueur.setText("Vous �tes le joueur " + numJoueur + ", forme : X");
+						labelJoueur.setText("Vous êtes le joueur " + numJoueur + ", forme : X");
 						System.out.println("JOUEUR " + numJoueur);
 
 						try {
@@ -462,7 +469,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 			System.out.println(e);
 		}
 
-		intTtt.setNombreJoueur(idPartie, nbJoueur - 1);
+		intTtt.setNombreJoueur(idPartie, 0);
 
 		Stage stage = (Stage) btnQuitter.getScene().getWindow();
 		stage.close();
