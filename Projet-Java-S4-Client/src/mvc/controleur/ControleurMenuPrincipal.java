@@ -60,7 +60,7 @@ public class ControleurMenuPrincipal {
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Allumettes");
 			stage.getIcons().add(new Image("/mvc/vue/images/icon.svg.png"));
-			stage.setScene(new Scene(root, 624, 436));
+			stage.setScene(new Scene(root, 600, 400));
 			stage.showAndWait();
 
 		} catch (IOException e) {

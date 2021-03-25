@@ -5,26 +5,29 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="624.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controleur.ControleurAllumettes">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controleur.ControleurJeuAllumette">
    <children>
-      <Label alignment="CENTER" layoutX="-2.0" layoutY="35.0" prefHeight="18.0" prefWidth="634.0" text="Allumettes" textFill="#6c0505">
+      <Label alignment="CENTER" prefHeight="18.0" prefWidth="634.0" text="Allumettes" textFill="#6c0505">
          <font>
             <Font name="System Bold" size="18.0" />
-         </font></Label>
-      <Label layoutX="230.0" layoutY="240.0" text="Nombre d'allumettes à retirer :" />
-      <Button fx:id="boutonUn" layoutX="255.0" layoutY="287.0" mnemonicParsing="false" onAction="#retirerUneAllumette" text="1" />
-      <Button fx:id="boutonDeux" layoutX="342.0" layoutY="287.0" mnemonicParsing="false" onAction="#retirerDeuxAllumettes" text="2" />
-      <Button fx:id="boutonQuitter" layoutX="27.0" layoutY="384.0" mnemonicParsing="false" onAction="#quitter" text="Quitter" />
-      <Label layoutX="392.0" layoutY="388.0" text="Vous possédez :" />
-      <Label fx:id="nombreAllumettesPossedes" layoutX="488.0" layoutY="388.0" text="x" />
-      <Label layoutX="517.0" layoutY="388.0" text="allumettes" />
-      <Label fx:id="labelPartie" layoutX="156.0" layoutY="387.0" />
-      <Label fx:id="tourJoueur" layoutX="251.0" layoutY="342.0" prefHeight="18.0" prefWidth="149.0" />
-      <HBox layoutX="2.0" layoutY="118.0" prefHeight="150.0" prefWidth="617.0">
+         </font>
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
+      </Label>
+      <Label fx:id="compteurAllumettesPartie" alignment="CENTER" prefHeight="18.0" prefWidth="642.0" text="compteur">
+         <VBox.margin>
+            <Insets bottom="10.0" top="15.0" />
+         </VBox.margin>
+      </Label>
+      <HBox prefHeight="150.0" prefWidth="617.0">
          <children>
             <ImageView fx:id="a1" fitHeight="120.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
@@ -180,6 +183,44 @@
             </ImageView>
          </children>
       </HBox>
-      <Label fx:id="compteurAllumettesPartie" layoutX="285.0" layoutY="72.0" text="compteur" />
+      <Label alignment="CENTER" prefHeight="18.0" prefWidth="656.0" text="Nombre d'allumettes à retirer :">
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="boutonUn" mnemonicParsing="false" onAction="#retirerUneAllumette" text="1">
+               <HBox.margin>
+                  <Insets right="50.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="boutonDeux" mnemonicParsing="false" onAction="#retirerDeuxAllumettes" text="2" />
+         </children>
+      </HBox>
+      <Label fx:id="tourJoueur" alignment="CENTER" prefHeight="18.0" prefWidth="629.0" />
+      <GridPane alignment="CENTER" prefHeight="60.0" prefWidth="600.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="boutonQuitter" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#quitter" prefHeight="26.0" prefWidth="61.0" text="Quitter">
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+            </Button>
+            <Label fx:id="labelPartie" alignment="CENTER" prefHeight="18.0" prefWidth="205.0" textAlignment="CENTER" GridPane.columnIndex="1" />
+            <Label fx:id="nombreAllumettesPossedes" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="204.0" text="x" textAlignment="RIGHT" GridPane.columnIndex="2">
+               <GridPane.margin>
+                  <Insets right="15.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+      </GridPane>
    </children>
-</AnchorPane>
+</VBox>

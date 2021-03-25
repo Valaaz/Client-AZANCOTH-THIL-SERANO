@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import mvc.modele.allumettes.InterfaceAllumettes;
 
-public class ControleurAllumettes implements Initializable {
+public class ControleurJeuAllumette implements Initializable {
 
 	private InterfaceAllumettes allumette;
 
@@ -86,7 +86,7 @@ public class ControleurAllumettes implements Initializable {
 		nbAllumettesJoueur = 0;
 
 		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
-		nombreAllumettesPossedes.setText("" + nbAllumettesJoueur);
+		nombreAllumettesPossedes.setText("Vous possédez " + nbAllumettesJoueur + " allumettes");
 
 		boutonDeux.setDisable(false);
 
@@ -129,7 +129,7 @@ public class ControleurAllumettes implements Initializable {
 		nbAllumettesJoueur = allumette.getNombreAllumettesJoueur(idPartie);
 
 		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
-		nombreAllumettesPossedes.setText("" + nbAllumettesJoueur);
+		nombreAllumettesPossedes.setText("Vous possédez " + nbAllumettesJoueur + " allumettes");
 
 		tour();
 
@@ -146,7 +146,7 @@ public class ControleurAllumettes implements Initializable {
 		nbAllumettesJoueur = allumette.getNombreAllumettesJoueur(idPartie);
 
 		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
-		nombreAllumettesPossedes.setText("" + nbAllumettesJoueur);
+		nombreAllumettesPossedes.setText("Vous possédez " + nbAllumettesJoueur + " allumettes");
 
 		tour();
 	}

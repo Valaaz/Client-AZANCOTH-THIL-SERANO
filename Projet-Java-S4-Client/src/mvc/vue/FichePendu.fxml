@@ -14,23 +14,22 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controleur.ControleurJeuPendu">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="526.0" text="Jeu du pendu" textAlignment="CENTER" textFill="#6c0505">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="500.0" text="Pendu" textAlignment="CENTER" textFill="#6c0505">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
       </Label>
-      <HBox prefHeight="50.0" prefWidth="200.0">
-         <children>
-            <Label fx:id="labelMot" alignment="CENTER" prefHeight="100.0" prefWidth="500.0" text="TEST " textAlignment="CENTER">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <HBox.margin>
-                  <Insets bottom="10.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
+      <Label fx:id="labelMot" alignment="CENTER" prefHeight="60.0" prefWidth="500.0" text="TEST " textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="5.0" />
+         </VBox.margin>
+      </Label>
       <GridPane fx:id="gripPaneLettre" alignment="BOTTOM_CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
