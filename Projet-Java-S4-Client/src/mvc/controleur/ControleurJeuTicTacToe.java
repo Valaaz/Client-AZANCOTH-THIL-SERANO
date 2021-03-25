@@ -72,6 +72,13 @@ public class ControleurJeuTicTacToe implements Initializable {
 			label4.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
 			label6.setStyle("-fx-border-color: black; -fx-border-style: solid hidden solid hidden;");
 
+			labels = intTtt.getLabels(idPartie);
+
+			for (int i = 0; i < 9; i++)
+				labels[i] = "";
+
+			intTtt.setLabels(idPartie, labels);
+
 			label1.setOnMouseClicked(handler);
 			label2.setOnMouseClicked(handler);
 			label3.setOnMouseClicked(handler);
@@ -154,7 +161,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 				});
 
 			} catch (RemoteException | InterruptedException e) {
-				System.out.println("Task joue exception : " + e);
+				// System.out.println("Task joue exception : " + e);
 			}
 
 			return null;
@@ -462,7 +469,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 			System.out.println(e);
 		}
 
-		intTtt.setNombreJoueur(idPartie, nbJoueur - 1);
+		intTtt.setNombreJoueur(idPartie, 0);
 
 		Stage stage = (Stage) btnQuitter.getScene().getWindow();
 		stage.close();
