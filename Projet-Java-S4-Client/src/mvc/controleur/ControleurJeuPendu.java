@@ -5,18 +5,21 @@ import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import mvc.modele.pendu.InterfacePendu;
 
 public class ControleurJeuPendu implements Initializable {
@@ -43,17 +46,16 @@ public class ControleurJeuPendu implements Initializable {
 	char[] motCache;
 	int nbErreurs = 0;
 	int idPartie;
+	ArrayList<Button> listeBoutons = new ArrayList<Button>(); 
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
 		try {
 			pendu = (InterfacePendu) Naming.lookup("rmi://localhost:8000/pendu");
 			idPartie = pendu.nouvellePartie();
-			initialisationInterface();
 			pendu.generationMotAleatoire(idPartie);
 			mot = pendu.getMotAleatoire(idPartie);
-			System.out.println("Mot aléatoire de la partie n°" + idPartie + " : " + mot);
+			System.out.println("Mot alÃ©atoire de la partie nÂ°" + idPartie + " : " + mot);
 
 			motCache = new char[mot.length()];
 			for (int i = 0; i < mot.length(); i++) {
@@ -61,40 +63,47 @@ public class ControleurJeuPendu implements Initializable {
 			}
 			pendu.setMotCache(idPartie, motCache);
 			labelMot.setText(pendu.affichage(idPartie));
-			labelPartie.setText("Partie n°" + idPartie);
+			labelPartie.setText("Partie nÂ°" + idPartie);
+			initialisationInterface(); 
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
-			System.out.println("Init : " + e);
 		}
-
+		
 	}
-
+	
 	public void initialisationInterface() {
-		boutonA.setPrefSize(30, 30);
-		boutonB.setPrefSize(30, 30);
-		boutonC.setPrefSize(30, 30);
-		boutonD.setPrefSize(30, 30);
-		boutonE.setPrefSize(30, 30);
-		boutonF.setPrefSize(30, 30);
-		boutonG.setPrefSize(30, 30);
-		boutonH.setPrefSize(30, 30);
-		boutonI.setPrefSize(30, 30);
-		boutonJ.setPrefSize(30, 30);
-		boutonK.setPrefSize(30, 30);
-		boutonL.setPrefSize(30, 30);
-		boutonM.setPrefSize(30, 30);
-		boutonN.setPrefSize(30, 30);
-		boutonO.setPrefSize(30, 30);
-		boutonP.setPrefSize(30, 30);
-		boutonQ.setPrefSize(30, 30);
-		boutonR.setPrefSize(30, 30);
-		boutonS.setPrefSize(30, 30);
-		boutonT.setPrefSize(30, 30);
-		boutonU.setPrefSize(30, 30);
-		boutonV.setPrefSize(30, 30);
-		boutonW.setPrefSize(30, 30);
-		boutonX.setPrefSize(30, 30);
-		boutonY.setPrefSize(30, 30);
-		boutonZ.setPrefSize(30, 30);
+		
+		listeBoutons.add(boutonA);
+		listeBoutons.add(boutonB);
+		listeBoutons.add(boutonC);
+		listeBoutons.add(boutonD);
+		listeBoutons.add(boutonE);
+		listeBoutons.add(boutonF);
+		listeBoutons.add(boutonG);
+		listeBoutons.add(boutonH);
+		listeBoutons.add(boutonI);
+		listeBoutons.add(boutonJ);
+		listeBoutons.add(boutonK);
+		listeBoutons.add(boutonL);
+		listeBoutons.add(boutonM);
+		listeBoutons.add(boutonN);
+		listeBoutons.add(boutonO);
+		listeBoutons.add(boutonP);
+		listeBoutons.add(boutonQ);
+		listeBoutons.add(boutonR);
+		listeBoutons.add(boutonS);
+		listeBoutons.add(boutonT);
+		listeBoutons.add(boutonU);
+		listeBoutons.add(boutonV);
+		listeBoutons.add(boutonW);
+		listeBoutons.add(boutonX);
+		listeBoutons.add(boutonY);
+		listeBoutons.add(boutonZ);
+		
+		for (int i=0; i<listeBoutons.size(); i++) {
+			listeBoutons.get(i).setPrefSize(30,30);
+			listeBoutons.get(i).setDisable(false);
+		}
+		
 		pendu1.setVisible(false);
 		pendu2.setVisible(false);
 		pendu3.setVisible(false);
@@ -265,28 +274,39 @@ public class ControleurJeuPendu implements Initializable {
 	}
 
 	public void contientLettre(char lettre) throws RemoteException {
-	if (pendu.partieTerminee(idPartie)) affichageFin(); 	
-	else {
 		pendu.ecritLettres(idPartie, lettre);
 		labelMot.setText(pendu.affichage(idPartie));
 		nbErreurs = pendu.dessinerPendu(idPartie);
 		ajoutTraitPendu(nbErreurs);
 		if (pendu.partieTerminee(idPartie)) affichageFin();
 	}
-	}
 	
 	public void affichageFin() throws RemoteException {
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		ButtonType rejouer = new ButtonType("Rejouer");
+        ButtonType quitter = new ButtonType("Quitter");
+        alert.getButtonTypes().clear();
+        alert.getButtonTypes().addAll(rejouer, quitter);
+        
 		if (pendu.dessinerPendu(idPartie)>=11) {
-			labelMot.setFont(new Font("System", 18));
-			labelMot.setText("Vous avez perdu ! Le mot était : " + mot); 
+			alert.setTitle("Dommage");
+	        alert.setHeaderText("Dommage, vous avez perdu !");
+	        alert.setContentText("Le mot Ã©tait : "+ mot);
 		}
 		else {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Félicitations");
-			alert.setHeaderText("Félicitations !");
-			alert.setContentText("Vous avez gagné ! Le mot était bien " + mot);
-			alert.show(); 
+	        alert.setTitle("FÃ©licitations");
+	        alert.setHeaderText("FÃ©licitations, vous avez gagnÃ© !");
+	        alert.setContentText("");
 		}
+		
+		Optional<ButtonType> option = alert.showAndWait();
+        if (option.get() == rejouer) {
+            initialize(null, null); 
+        } else if (option.get() == quitter) {
+        	Stage stage = (Stage) boutonA.getScene().getWindow();
+    		stage.close();	
+        } 
 	}
 
 	public void ajoutTraitPendu(int nbErreurs) throws RemoteException {
@@ -333,7 +353,6 @@ public class ControleurJeuPendu implements Initializable {
 		}
 		case 11: {
 			pendu11.setVisible(true);
-			affichageFin(); 
 			break;
 		}
 		}
