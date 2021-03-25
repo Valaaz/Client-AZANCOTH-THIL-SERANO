@@ -104,48 +104,48 @@ public class ControleurMenuPrincipal {
 
 	@FXML
 	public void reglesPendu() {
-		String regles = "Le pendu se joue avec l'ordinateur. Vous devez deviner le mot que l'ordinateur a choisi en sélectionnant une lettre."
-				+ " Un trait apparaît sur le dessin du pendu à chaque mauvaise réponse. Si vous trouver le mot vous gagnez, si le dessin arrive au bout de sa forme vous perdez.";
+		String regles = "Le pendu se joue avec l'ordinateur. Vous devez deviner le mot que l'ordinateur a choisi en sÃ©lectionnant une lettre."
+				+ " Un trait apparaÃ®t sur le dessin du pendu Ã  chaque mauvaise rÃ©ponse. Si vous trouver le mot vous gagnez, si le dessin arrive au bout de sa forme vous perdez.";
 
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Règles du Pendu");
+		alert.setTitle("RÃ¨gles du Pendu");
 		alert.setHeaderText("Jeu du Pendu");
 		alert.setContentText(regles);
 		alert.setResizable(true);
 
-		// Permet à la fenêtre de s'adapter à la taille du contenu
+		// Permet Ã  la fenÃªtre de s'adapter Ã  la taille du contenu
 		alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 		alert.show();
 	}
 
 	@FXML
 	public void reglesAllumettes() {
-		String regles = "Ce jeu se joue avec l'ordinateur en tour par tour. Un nombre impair d'allumettes est disposé. Chacun des joueurs prend une ou 2 allumettes quand vient son tour."
-				+ " Le jeu s'arrête quand le tas est vide et le gagant est celui qui possède un nombre impair d'allumettes.";
+		String regles = "Ce jeu se joue avec l'ordinateur en tour par tour. Un nombre impair d'allumettes est disposÃ©. Chacun des joueurs prend une ou 2 allumettes quand vient son tour."
+				+ " Le jeu s'arrÃªte quand le tas est vide et le gagant est celui qui possÃ¨de un nombre impair d'allumettes.";
 
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Règles du jeu des Allumettes");
+		alert.setTitle("RÃ¨gles du jeu des Allumettes");
 		alert.setHeaderText("Jeu des Allumettes");
 		alert.setContentText(regles);
 		alert.setResizable(true);
 
-		// Permet à la fenêtre de s'adapter à la taille du contenu
+		// Permet Ã  la fenÃªtre de s'adapter Ã  la taille du contenu
 		alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 		alert.show();
 	}
 
 	@FXML
 	public void reglesTicTacToe() {
-		String regles = "Le Tic-Tac-Toe ou Morpion se joue à 2 joueurs en tour par tour sur une grille en 3x3. Le gagnant est celui qui arrive aligner 3 de ses formes"
+		String regles = "Le Tic-Tac-Toe ou Morpion se joue Ã  2 joueurs en tour par tour sur une grille en 3x3. Le gagnant est celui qui arrive aligner 3 de ses formes"
 				+ " que ce soit horizontalement, verticalement ou en diagonal. L'un des joueurs joue avec des ronds et l'autre avec des croix.";
 
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Règles du Tic-Tac-Toe");
+		alert.setTitle("RÃ¨gles du Tic-Tac-Toe");
 		alert.setHeaderText("Tic-Tac-Toe");
 		alert.setContentText(regles);
 		alert.setResizable(true);
 
-		// Permet à la fenêtre de s'adapter à la taille du contenu
+		// Permet Ã  la fenÃªtre de s'adapter Ã  la taille du contenu
 		alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 		alert.show();
 	}
