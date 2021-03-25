@@ -5,8 +5,6 @@ import java.rmi.RemoteException;
 
 public interface InterfaceAllumettes extends Remote {
 
-	public int coupIA() throws RemoteException;
-
 	public String partieTerminee(int resultat) throws RemoteException;
 
 	public int nouvellePartie() throws RemoteException;
@@ -26,5 +24,7 @@ public interface InterfaceAllumettes extends Remote {
 	int getTour(int id) throws RemoteException;
 
 	void setTour(int id, int tour) throws RemoteException;
+
+	void coupIA(int id) throws RemoteException;
 
 }

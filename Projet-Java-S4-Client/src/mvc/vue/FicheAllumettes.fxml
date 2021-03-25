@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="624.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controleur.ControleurAllumettes">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="624.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controleur.ControleurAllumettes">
    <children>
       <Label alignment="CENTER" layoutX="-2.0" layoutY="35.0" prefHeight="18.0" prefWidth="634.0" text="Jeu des allumettes" />
       <Label fx:id="compteurAllumettesPartie" layoutX="288.0" layoutY="137.0" text="Compteur" />
@@ -16,5 +16,6 @@
       <Label fx:id="nombreAllumettesPossedes" layoutX="488.0" layoutY="388.0" text="x" />
       <Label layoutX="517.0" layoutY="388.0" text="allumettes" />
       <Label fx:id="labelPartie" layoutX="202.0" layoutY="388.0" />
+      <Label fx:id="tourJoueur" layoutX="289.0" layoutY="354.0" />
    </children>
 </AnchorPane>
