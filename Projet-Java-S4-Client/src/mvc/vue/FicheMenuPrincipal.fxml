@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="808.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controleur.ControleurMenuPrincipal">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controleur.ControleurMenuPrincipal">
    <children>
       <MenuBar>
          <menus>
@@ -33,7 +33,7 @@
       </MenuBar>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="813.0" text="Bienvenue sur notre serveur de jeu !" textAlignment="CENTER" textFill="#922727">
          <font>
-            <Font name="Lucida Bright" size="25.0" />
+            <Font name="Myanmar Text" size="36.0" />
          </font>
          <VBox.margin>
             <Insets top="15.0" />
@@ -49,41 +49,11 @@
       </Label>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="boutonPendu" contentDisplay="TOP" mnemonicParsing="false" onAction="#jeuDuPendu">
-               <padding>
-                  <Insets bottom="-10.0" left="-1.0" right="-1.0" top="-10.0" />
-               </padding>
-               <graphic>
-                  <ImageView fitHeight="208.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Images/pendu.jpg" />
-                     </image>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-               </graphic>
-            </Button>
             <Button fx:id="boutonAllumette" contentDisplay="TOP" mnemonicParsing="false" onAction="#jeuDesAllumettes">
-               <padding>
-                  <Insets bottom="-10.0" left="-1.0" right="-1.0" top="-10.0" />
-               </padding>
                <graphic>
                   <ImageView fitHeight="208.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../OneDrive/Bureau/Photos/fond.png" />
-                     </image>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="boutonTicTacToe" contentDisplay="TOP" mnemonicParsing="false" onAction="#jeuDuTicTacToe">
-               <graphic>
-                  <ImageView fitHeight="208.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/morpion.jpg" />
+                        <Image url="@images/allumettes.png" />
                      </image>
                      <viewport>
                         <Rectangle2D />
@@ -91,13 +61,49 @@
                   </ImageView>
                </graphic>
                <HBox.margin>
-                  <Insets />
+                  <Insets right="25.0" />
                </HBox.margin>
                <padding>
-                  <Insets bottom="-10.0" left="-1.0" right="-1.0" top="-10.0" />
+                  <Insets bottom="-5.0" left="5.0" right="5.0" top="-5.0" />
+               </padding>
+            </Button>
+            <Button fx:id="boutonPendu" contentDisplay="TOP" mnemonicParsing="false" onAction="#jeuDuPendu">
+               <graphic>
+                  <ImageView fitHeight="208.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/pendu.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets bottom="-5.0" left="5.0" right="5.0" top="-5.0" />
+               </padding>
+            </Button>
+            <Button fx:id="boutonTicTacToe" contentDisplay="TOP" mnemonicParsing="false" onAction="#jeuDuTicTacToe">
+               <graphic>
+                  <ImageView fitHeight="208.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/tictactoe.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets left="25.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="-5.0" left="5.0" right="5.0" top="-5.0" />
                </padding>
             </Button>
          </children>
+         <VBox.margin>
+            <Insets top="25.0" />
+         </VBox.margin>
       </HBox>
    </children>
 </VBox>

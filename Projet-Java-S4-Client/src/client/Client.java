@@ -22,14 +22,12 @@ public class Client extends Application {
 			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
 			Node root = fxmlLoader.load();
 
-			Scene scene = new Scene((VBox) root, 750, 520);
+			Scene scene = new Scene((VBox) root, 800, 490);
 			scene.getStylesheets().add(getClass().getResource("/mvc/vue/css/button.css").toExternalForm());
 			primaryStage.getIcons().add(new Image("/mvc/vue/images/icon.svg.png"));
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Claiwatin");
 			primaryStage.centerOnScreen();
-			primaryStage.setMinWidth(1000);
-			primaryStage.setMinHeight(520);
 			primaryStage.show();
 
 		} catch (Exception e) {
