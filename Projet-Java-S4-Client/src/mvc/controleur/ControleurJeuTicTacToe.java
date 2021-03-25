@@ -56,8 +56,13 @@ public class ControleurJeuTicTacToe implements Initializable {
 		try {
 			intTtt = (InterfaceTicTacToe) Naming.lookup("rmi://localhost:8000/tictactoe");
 			idPartie = intTtt.numPartie();
+			intTtt.setFin(idPartie, 0);
 			nbJoueur = intTtt.getNombreJoueur(idPartie);
+			System.out.println("Nb joueur : " + nbJoueur + ", fin : " + intTtt.getFinPartie(idPartie));
 			intTtt.setNombreJoueur(idPartie, nbJoueur + 1);
+
+			nbJoueur = intTtt.getNombreJoueur(idPartie);
+			System.out.println("Nb joueur : " + nbJoueur);
 
 			labelIdPartie.setText("Partie n°" + idPartie);
 
@@ -445,7 +450,7 @@ public class ControleurJeuTicTacToe implements Initializable {
 	}
 
 	@FXML
-	public void quitter() {
+	public void quitter() throws RemoteException {
 		if (attente.cancel())
 			System.out.println("Attente cancel");
 		if (joue.cancel())
@@ -456,6 +461,8 @@ public class ControleurJeuTicTacToe implements Initializable {
 		} catch (RemoteException e) {
 			System.out.println(e);
 		}
+
+		intTtt.setNombreJoueur(idPartie, nbJoueur - 1);
 
 		Stage stage = (Stage) btnQuitter.getScene().getWindow();
 		stage.close();

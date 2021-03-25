@@ -2,6 +2,7 @@ package mvc.controleur;
 
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -76,7 +77,13 @@ public class ControleurMenuPrincipal {
 
 			ControleurJeuTicTacToe jeuTtt = fxmlLoader.getController();
 			Stage stage = new Stage();
-			stage.setOnCloseRequest(e -> jeuTtt.quitter());
+			stage.setOnCloseRequest(e -> {
+				try {
+					jeuTtt.quitter();
+				} catch (RemoteException e1) {
+					System.out.println(e);
+				}
+			});
 
 			stage.setResizable(false);
 			stage.initModality(Modality.APPLICATION_MODAL);
