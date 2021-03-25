@@ -69,8 +69,6 @@ public class ControleurAllumettes implements Initializable {
 	public void finDePartie() {
 		Alert alert = new Alert(AlertType.INFORMATION);
 
-		System.out.println("finDePartie" + nbAllumettesPartie);
-
 		if (nbAllumettesJoueur % 2 == 0) { // Si compteur du joueur paire alors défaite
 			alert.setTitle("Défaite");
 			alert.setHeaderText("Dommage vous avez perdu ...");
@@ -82,7 +80,7 @@ public class ControleurAllumettes implements Initializable {
 			alert.setContentText("Le goût de la victoire est en vous");
 
 		}
-		alert.showAndWait();
+		alert.show();
 		Stage stage = (Stage) boutonQuitter.getScene().getWindow();
 		stage.close();
 
