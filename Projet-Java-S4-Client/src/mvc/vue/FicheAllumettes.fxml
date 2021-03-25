@@ -27,17 +27,9 @@
             <Insets bottom="10.0" top="15.0" />
          </VBox.margin>
       </Label>
-      <HBox prefHeight="150.0" prefWidth="617.0">
+      <HBox alignment="CENTER" prefHeight="137.0" prefWidth="600.0">
          <children>
-            <ImageView fx:id="a1" fitHeight="120.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@images/allumette.png" />
-               </image>
-               <HBox.margin>
-                  <Insets left="15.0" right="5.0" />
-               </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="a2" fitHeight="120.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a1" fitHeight="115.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>
@@ -45,7 +37,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="a3" fitHeight="120.0" fitWidth="30.0" layoutX="44.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a2" fitHeight="115.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>
@@ -53,7 +45,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="a4" fitHeight="120.0" fitWidth="30.0" layoutX="77.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a3" fitHeight="115.0" fitWidth="30.0" layoutX="44.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>
@@ -61,7 +53,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="a5" fitHeight="120.0" fitWidth="30.0" layoutX="111.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a4" fitHeight="115.0" fitWidth="30.0" layoutX="77.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>
@@ -69,7 +61,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="a6" fitHeight="120.0" fitWidth="30.0" layoutX="111.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a5" fitHeight="115.0" fitWidth="30.0" layoutX="111.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>
@@ -77,7 +69,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="a7" fitHeight="120.0" fitWidth="30.0" layoutX="144.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a6" fitHeight="115.0" fitWidth="30.0" layoutX="111.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>
@@ -85,7 +77,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="a8" fitHeight="120.0" fitWidth="30.0" layoutX="212.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a7" fitHeight="115.0" fitWidth="30.0" layoutX="144.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>
@@ -93,7 +85,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="a9" fitHeight="120.0" fitWidth="30.0" layoutX="245.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a8" fitHeight="115.0" fitWidth="30.0" layoutX="212.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>
@@ -101,7 +93,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="a10" fitHeight="120.0" fitWidth="30.0" layoutX="279.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a9" fitHeight="115.0" fitWidth="30.0" layoutX="245.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>
@@ -109,7 +101,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="a11" fitHeight="120.0" fitWidth="30.0" layoutX="279.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a10" fitHeight="115.0" fitWidth="30.0" layoutX="279.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>
@@ -117,7 +109,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="a12" fitHeight="120.0" fitWidth="30.0" layoutX="346.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a11" fitHeight="115.0" fitWidth="30.0" layoutX="279.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>
@@ -125,7 +117,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="a13" fitHeight="120.0" fitWidth="30.0" layoutX="380.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a12" fitHeight="115.0" fitWidth="30.0" layoutX="346.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>
@@ -133,7 +125,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="a14" fitHeight="120.0" fitWidth="30.0" layoutX="413.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a13" fitHeight="115.0" fitWidth="30.0" layoutX="380.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>
@@ -141,7 +133,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="a15" fitHeight="120.0" fitWidth="30.0" layoutX="413.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a14" fitHeight="115.0" fitWidth="30.0" layoutX="413.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>
@@ -149,7 +141,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="a16" fitHeight="120.0" fitWidth="30.0" layoutX="480.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a15" fitHeight="115.0" fitWidth="30.0" layoutX="413.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>
@@ -157,7 +149,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="a17" fitHeight="120.0" fitWidth="30.0" layoutX="480.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a16" fitHeight="115.0" fitWidth="30.0" layoutX="480.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>
@@ -165,7 +157,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="a18" fitHeight="120.0" fitWidth="30.0" layoutX="548.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a17" fitHeight="115.0" fitWidth="30.0" layoutX="480.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>
@@ -173,7 +165,15 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="a19" fitHeight="120.0" fitWidth="30.0" layoutX="581.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="a18" fitHeight="115.0" fitWidth="30.0" layoutX="548.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@images/allumette.png" />
+               </image>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="a19" fitHeight="115.0" fitWidth="30.0" layoutX="581.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@images/allumette.png" />
                </image>

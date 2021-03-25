@@ -77,7 +77,7 @@ public class ControleurJeuAllumette implements Initializable {
 
 		}
 
-		for (int i = 1; i <= nbAllumettesPartie; i++) {
+		for (int i = 0; i < nbAllumettesPartie; i++) {
 			listeAllumettes.get(i).setVisible(true);
 		}
 
@@ -156,10 +156,10 @@ public class ControleurJeuAllumette implements Initializable {
 
 		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
 
-		for (int i = 1; i <= nbAllumettesTotal; i++) {
+		for (int i = 0; i < nbAllumettesTotal; i++) {
 			listeAllumettes.get(i).setVisible(false);
 		}
-		for (int i = 1; i <= nbAllumettesPartie; i++) {
+		for (int i = 0; i < nbAllumettesPartie; i++) {
 			listeAllumettes.get(i).setVisible(true);
 		}
 
