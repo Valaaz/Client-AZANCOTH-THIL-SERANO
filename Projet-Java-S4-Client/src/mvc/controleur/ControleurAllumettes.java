@@ -28,7 +28,7 @@ public class ControleurAllumettes implements Initializable {
 	private Button boutonUn, boutonDeux, boutonQuitter;
 
 	@FXML
-	private Label nombreAllumettesPossedes, labelPartie, tourJoueur;
+	private Label nombreAllumettesPossedes, labelPartie, tourJoueur, compteurAllumettesPartie;
 
 	int nbAllumettesJoueur = 0;
 	int nbAllumettesPartie = 0;
@@ -40,7 +40,6 @@ public class ControleurAllumettes implements Initializable {
 	private ImageView a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19;
 	@FXML
 	private ArrayList<ImageView> listeAllumettes = new ArrayList<ImageView>();
-
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -86,6 +85,7 @@ public class ControleurAllumettes implements Initializable {
 
 		nbAllumettesJoueur = 0;
 
+		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
 		nombreAllumettesPossedes.setText("" + nbAllumettesJoueur);
 
 		boutonDeux.setDisable(false);
@@ -128,6 +128,7 @@ public class ControleurAllumettes implements Initializable {
 		nbAllumettesPartie = allumette.getNbAllumettePartie(idPartie);
 		nbAllumettesJoueur = allumette.getNombreAllumettesJoueur(idPartie);
 
+		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
 		nombreAllumettesPossedes.setText("" + nbAllumettesJoueur);
 
 		tour();
@@ -144,6 +145,7 @@ public class ControleurAllumettes implements Initializable {
 		nbAllumettesPartie = allumette.getNbAllumettePartie(idPartie);
 		nbAllumettesJoueur = allumette.getNombreAllumettesJoueur(idPartie);
 
+		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
 		nombreAllumettesPossedes.setText("" + nbAllumettesJoueur);
 
 		tour();
@@ -151,6 +153,8 @@ public class ControleurAllumettes implements Initializable {
 
 	public void tour() throws RemoteException, InterruptedException {
 		tour = allumette.getTour(idPartie);
+
+		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
 
 		for (int i = 1; i <= nbAllumettesTotal; i++) {
 			listeAllumettes.get(i).setVisible(false);
@@ -168,6 +172,7 @@ public class ControleurAllumettes implements Initializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			compteurAllumettesPartie.setText("" + nbAllumettesPartie);
 			try {
 				nbAllumettesPartie = allumette.getNbAllumettePartie(idPartie);
 			} catch (RemoteException e) {
