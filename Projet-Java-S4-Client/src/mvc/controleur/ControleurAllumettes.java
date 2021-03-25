@@ -5,6 +5,7 @@ import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.animation.PauseTransition;
@@ -14,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import mvc.modele.allumettes.InterfaceAllumettes;
@@ -26,21 +28,48 @@ public class ControleurAllumettes implements Initializable {
 	private Button boutonUn, boutonDeux, boutonQuitter;
 
 	@FXML
-	private Label nombreAllumettesPossedes, compteurAllumettesPartie, labelPartie, tourJoueur;
+	private Label nombreAllumettesPossedes, labelPartie, tourJoueur;
 
 	int nbAllumettesJoueur = 0;
 	int nbAllumettesPartie = 0;
+	int nbAllumettesTotal = 0;
 	int idPartie;
 	int tour;
+
+	@FXML
+	private ImageView a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19;
+	@FXML
+	private ArrayList<ImageView> listeAllumettes = new ArrayList<ImageView>();
+
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		try {
+			listeAllumettes.add(a1);
+			listeAllumettes.add(a2);
+			listeAllumettes.add(a3);
+			listeAllumettes.add(a4);
+			listeAllumettes.add(a5);
+			listeAllumettes.add(a6);
+			listeAllumettes.add(a7);
+			listeAllumettes.add(a8);
+			listeAllumettes.add(a9);
+			listeAllumettes.add(a10);
+			listeAllumettes.add(a11);
+			listeAllumettes.add(a12);
+			listeAllumettes.add(a13);
+			listeAllumettes.add(a14);
+			listeAllumettes.add(a15);
+			listeAllumettes.add(a16);
+			listeAllumettes.add(a17);
+			listeAllumettes.add(a18);
+			listeAllumettes.add(a19);
 
 			allumette = (InterfaceAllumettes) Naming.lookup("rmi://localhost:8000/allumette");
 			idPartie = allumette.nouvellePartie();
 			nbAllumettesPartie = allumette.generationAleatoireAllumettes(idPartie);
+			nbAllumettesTotal = nbAllumettesPartie;
 			allumette.setNbAllumettePartie(idPartie, nbAllumettesPartie);
 			tour();
 
@@ -49,11 +78,14 @@ public class ControleurAllumettes implements Initializable {
 
 		}
 
+		for (int i = 1; i <= nbAllumettesPartie; i++) {
+			listeAllumettes.get(i).setVisible(true);
+		}
+
 		labelPartie.setText("Partie n°" + idPartie);
 
 		nbAllumettesJoueur = 0;
 
-		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
 		nombreAllumettesPossedes.setText("" + nbAllumettesJoueur);
 
 		boutonDeux.setDisable(false);
@@ -96,7 +128,6 @@ public class ControleurAllumettes implements Initializable {
 		nbAllumettesPartie = allumette.getNbAllumettePartie(idPartie);
 		nbAllumettesJoueur = allumette.getNombreAllumettesJoueur(idPartie);
 
-		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
 		nombreAllumettesPossedes.setText("" + nbAllumettesJoueur);
 
 		tour();
@@ -113,7 +144,6 @@ public class ControleurAllumettes implements Initializable {
 		nbAllumettesPartie = allumette.getNbAllumettePartie(idPartie);
 		nbAllumettesJoueur = allumette.getNombreAllumettesJoueur(idPartie);
 
-		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
 		nombreAllumettesPossedes.setText("" + nbAllumettesJoueur);
 
 		tour();
@@ -121,6 +151,13 @@ public class ControleurAllumettes implements Initializable {
 
 	public void tour() throws RemoteException, InterruptedException {
 		tour = allumette.getTour(idPartie);
+
+		for (int i = 1; i <= nbAllumettesTotal; i++) {
+			listeAllumettes.get(i).setVisible(false);
+		}
+		for (int i = 1; i <= nbAllumettesPartie; i++) {
+			listeAllumettes.get(i).setVisible(true);
+		}
 
 		PauseTransition pause = new PauseTransition(Duration.seconds(2));
 		pause.setOnFinished(event -> {
@@ -137,7 +174,6 @@ public class ControleurAllumettes implements Initializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			compteurAllumettesPartie.setText("" + nbAllumettesPartie);
 			try {
 				allumette.setTour(idPartie, tour - 1);
 			} catch (RemoteException e) {
