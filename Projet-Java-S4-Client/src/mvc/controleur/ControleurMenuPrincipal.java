@@ -26,6 +26,8 @@ public class ControleurMenuPrincipal {
 	@FXML
 	private Button boutonPendu, boutonTicTacToe, boutonAllumette;
 
+	// Chaque méthode appelle un jeu
+
 	@FXML
 	public void jeuDuPendu() {
 		try {
@@ -75,8 +77,10 @@ public class ControleurMenuPrincipal {
 			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
 			Parent root = fxmlLoader.load();
 
+			// Récupération du controleur afin de d'appeler la méthode quitter
 			ControleurJeuTicTacToe jeuTtt = fxmlLoader.getController();
 			Stage stage = new Stage();
+			// On set la méthode quitter qui sera appelée à la fermeture de la fenetre par la croix rouge
 			stage.setOnCloseRequest(e -> {
 				try {
 					jeuTtt.quitter();
@@ -96,6 +100,8 @@ public class ControleurMenuPrincipal {
 			e.printStackTrace();
 		}
 	}
+
+	// Définition des méthodes pour chaque menu item
 
 	@FXML
 	public void quitterApplication() {
