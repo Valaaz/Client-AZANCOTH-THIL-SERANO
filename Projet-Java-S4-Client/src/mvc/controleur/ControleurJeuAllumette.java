@@ -36,16 +36,21 @@ public class ControleurJeuAllumette implements Initializable {
 	int idPartie;
 	int tour;
 
+	// ImageView de toutes les allumettes possiblement présentent dans la partie
 	@FXML
 	private ImageView a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19;
 	@FXML
 	private ArrayList<ImageView> listeAllumettes = new ArrayList<ImageView>();
 
+	/*
+	 * Fonction initialize
+	 */
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		try {
-			listeAllumettes.add(a1);
+			listeAllumettes.add(a1); // ajout des images allumettes en fonction du chiffre aléatoire reçu
 			listeAllumettes.add(a2);
 			listeAllumettes.add(a3);
 			listeAllumettes.add(a4);
@@ -66,96 +71,145 @@ public class ControleurJeuAllumette implements Initializable {
 			listeAllumettes.add(a19);
 
 			allumette = (InterfaceAllumettes) Naming.lookup("rmi://localhost:8000/allumette");
-			idPartie = allumette.nouvellePartie();
-			nbAllumettesPartie = allumette.generationAleatoireAllumettes(idPartie);
+			idPartie = allumette.nouvellePartie(); // Mise de l'id de la partie avec nouvellePartie()
+			nbAllumettesPartie = allumette.generationAleatoireAllumettes(idPartie); // Stockage du nombre d'allumettes
+																					// en partie avec la génération
+																					// aléatoire
 			nbAllumettesTotal = nbAllumettesPartie;
-			allumette.setNbAllumettePartie(idPartie, nbAllumettesPartie);
-			tour();
+			allumette.setNbAllumettePartie(idPartie, nbAllumettesPartie); // set du nombre d'allumettes en partie
+			tour(); // Utilisation de la fonction tour pour directement donner la main au joueur
 
-		} catch (MalformedURLException | RemoteException | NotBoundException | InterruptedException e) {
+		} catch (MalformedURLException | RemoteException | NotBoundException | InterruptedException e) { // catch des
+																											// erreurs
 			System.out.println("Init : " + e);
 
 		}
 
-		for (int i = 0; i < nbAllumettesPartie; i++) {
+		for (int i = 0; i < nbAllumettesPartie; i++) { // boucle affichant les images d'allumettes en fonction du nombre
+														// d'allumettes en partie
 			listeAllumettes.get(i).setVisible(true);
 		}
 
-		labelPartie.setText("Partie n°" + idPartie);
+		labelPartie.setText("Partie n°" + idPartie); // Label indiquant le numéro de partie en cours
 
-		nbAllumettesJoueur = 0;
+		nbAllumettesJoueur = 0; // Mise à 0 du nombre d'allumettes du joueur en début de partie
 
-		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
-		nombreAllumettesPossedes.setText("Vous possédez " + nbAllumettesJoueur + " allumettes");
+		compteurAllumettesPartie.setText("" + nbAllumettesPartie); // Indication du nombre d'allumettes en partie (en
+																	// plus des images)
+		nombreAllumettesPossedes.setText("Vous possédez " + nbAllumettesJoueur + " allumettes"); // Indication du nombre
+																									// d'allumettes
+																									// possédées par le
+																									// joueur
 
-		boutonDeux.setDisable(false);
+		boutonDeux.setDisable(false); // Affichage du bouton retirant deux allumettes
 
 	}
 
+	/*
+	 * Fonction permettant de faire une vérification de fin de partie
+	 */
+
 	public void verifFinDePartie() {
-		if (nbAllumettesPartie <= 0) {
-			finDePartie();
+		if (nbAllumettesPartie <= 0) { // Si le nombre d'allumettes est inférieur ou égal à 0 alors
+			finDePartie(); // lancement de la fonction fin de partie
 		}
 	}
 
-	public void finDePartie() {
-		Alert alert = new Alert(AlertType.INFORMATION);
+	/*
+	 * Fonction permettant l'arrêt du jeu
+	 */
 
-		if (nbAllumettesJoueur % 2 == 0) { // Si compteur du joueur paire alors défaite
+	public void finDePartie() {
+		Alert alert = new Alert(AlertType.INFORMATION); // création d'une alerte pop-up
+
+		if (nbAllumettesJoueur % 2 == 0) { // Si le compteur du joueur paire alors c'est une défaite
+			/*
+			 * Affichage de l'alerte avec les détails voulus (Titre, Header et Contenu de
+			 * l'alerte)
+			 */
 			alert.setTitle("Défaite");
 			alert.setHeaderText("Dommage vous avez perdu ...");
 			alert.setContentText("Réessayez une prochaine fois");
-
+			/*
+			 * Sinon victoire du joueur
+			 */
 		} else { // Sinon victoire
 			alert.setTitle("Victoire");
 			alert.setHeaderText("Bravo vous avez gagné !");
 			alert.setContentText("Le goût de la victoire est en vous");
 
 		}
-		alert.show();
+		alert.show(); // Affichage de l'alerte
+		/*
+		 * Stage permet de quitter directement la fenêtre de jeu
+		 */
 		Stage stage = (Stage) boutonQuitter.getScene().getWindow();
 		stage.close();
 
 	}
 
+	/*
+	 * Fonction retirnt une allumette
+	 */
+
 	@FXML
 	void retirerUneAllumette() throws RemoteException, InterruptedException {
 
-		allumette.soustraireAllumettes(idPartie, 1);
+		allumette.soustraireAllumettes(idPartie, 1); // retirer une allumette de la partie
 
-		allumette.setNombreAllumettesJoueur(idPartie, nbAllumettesJoueur + 1);
+		allumette.setNombreAllumettesJoueur(idPartie, nbAllumettesJoueur + 1); // ajouter 1 au compteur du joueur de la
+																				// partie
 
-		nbAllumettesPartie = allumette.getNbAllumettePartie(idPartie);
-		nbAllumettesJoueur = allumette.getNombreAllumettesJoueur(idPartie);
+		nbAllumettesPartie = allumette.getNbAllumettePartie(idPartie); // récupération du nombre d'allumettes en partie
+		nbAllumettesJoueur = allumette.getNombreAllumettesJoueur(idPartie); // récupération du nombre d'allumettes du
+																			// joueur
 
-		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
-		nombreAllumettesPossedes.setText("Vous possédez " + nbAllumettesJoueur + " allumettes");
+		compteurAllumettesPartie.setText("" + nbAllumettesPartie); // réécrire le nombre d'allumettes de la partie au
+																	// compteur
+		nombreAllumettesPossedes.setText("Vous possédez " + nbAllumettesJoueur + " allumettes"); // réécrire le nombre
+																									// d'allumettes du
+																									// joueur en partie
 
-		tour();
+		tour(); // appel de la fonction tour pour donner la main à l'adversaire
 
 	}
+
+	/*
+	 * Fonction retirant deux allumettes
+	 */
 
 	@FXML
 	void retirerDeuxAllumettes() throws RemoteException, InterruptedException {
 
-		allumette.soustraireAllumettes(idPartie, 2);
+		allumette.soustraireAllumettes(idPartie, 2); // retirer deux allumettes de la partie
 
-		allumette.setNombreAllumettesJoueur(idPartie, nbAllumettesJoueur + 2);
+		allumette.setNombreAllumettesJoueur(idPartie, nbAllumettesJoueur + 2); // ajouter 2 au compteur du joueur de la
+																				// partie
 
-		nbAllumettesPartie = allumette.getNbAllumettePartie(idPartie);
-		nbAllumettesJoueur = allumette.getNombreAllumettesJoueur(idPartie);
+		nbAllumettesPartie = allumette.getNbAllumettePartie(idPartie); // récupération du nombre d'allumettes en partie
+		nbAllumettesJoueur = allumette.getNombreAllumettesJoueur(idPartie); // récupération du nombre d'allumettes du
+																			// joueur
 
-		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
-		nombreAllumettesPossedes.setText("Vous possédez " + nbAllumettesJoueur + " allumettes");
+		compteurAllumettesPartie.setText("" + nbAllumettesPartie); // réécrire le nombre d'allumettes de la partie au
+																	// compteur
+		nombreAllumettesPossedes.setText("Vous possédez " + nbAllumettesJoueur + " allumettes");// réécrire le nombre
+																								// d'allumettes du
+																								// joueur en partie
 
-		tour();
+		tour(); // appel de la fonction tour pour donner la main à l'adversaire
 	}
 
+	/*
+	 * Fonction permettant de jouer les tours de la partie
+	 */
+
 	public void tour() throws RemoteException, InterruptedException {
-		tour = allumette.getTour(idPartie);
+		tour = allumette.getTour(idPartie); // récupération du tour de la partie
 
-		compteurAllumettesPartie.setText("" + nbAllumettesPartie);
+		compteurAllumettesPartie.setText("" + nbAllumettesPartie); // affichage du nombre d'allumettes en partie
 
+		// boucle permettant d'afficher les allumettes petit à petit au cours de la
+		// partie
 		for (int i = 0; i < nbAllumettesTotal; i++) {
 			listeAllumettes.get(i).setVisible(false);
 		}
@@ -163,31 +217,36 @@ public class ControleurJeuAllumette implements Initializable {
 			listeAllumettes.get(i).setVisible(true);
 		}
 
-		PauseTransition pause = new PauseTransition(Duration.seconds(2));
+		// Création d'une pause permettant de faire patienter le joueur pendant que l'IA
+		// joue
+
+		PauseTransition pause = new PauseTransition(Duration.seconds(2)); // pause de 2 secondes à chaque tour
 		pause.setOnFinished(event -> {
 
 			try {
-				allumette.coupIA(idPartie);
+				allumette.coupIA(idPartie); // appel de coupIA permettant à l'IA de jouer son tour
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			compteurAllumettesPartie.setText("" + nbAllumettesPartie);
+			compteurAllumettesPartie.setText("" + nbAllumettesPartie); // re affichage du nombre d'allumettes en partie
+																		// une fois le tour de l'IA joué
 			try {
-				nbAllumettesPartie = allumette.getNbAllumettePartie(idPartie);
+				nbAllumettesPartie = allumette.getNbAllumettePartie(idPartie); // récupération du nombre d'allumettes en
+																				// partie
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
-				allumette.setTour(idPartie, tour - 1);
+				allumette.setTour(idPartie, tour - 1); // tour - 1 permettant de donner la main au joueur
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
 			try {
-				tour();
+				tour(); // appel de la fonction permettant de faire jouer le joueur
 			} catch (RemoteException | InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -195,35 +254,42 @@ public class ControleurJeuAllumette implements Initializable {
 
 		});
 
-		if (tour == 1) {
-			tourJoueur.setText("A votre tour...");
-			boutonUn.setDisable(false);
-			boutonDeux.setDisable(false);
-			allumette.setTour(idPartie, tour + 1);
-		} else if (nbAllumettesPartie >= 1) {
-			boutonUn.setDisable(true);
-			boutonDeux.setDisable(true);
-			tourJoueur.setText("Au tour de l'adversaire...");
-			pause.play();
+		if (tour == 1) { // si le tour == 1
+			tourJoueur.setText("A votre tour..."); // affichage du texte "a votre tour..." pour le joueur
+			boutonUn.setDisable(false); // activation du bouton 1
+			boutonDeux.setDisable(false); // activation du bouton 2
+			allumette.setTour(idPartie, tour + 1); // set de tour + 1
+		} else if (nbAllumettesPartie >= 1) { // Sinon si le nombre d'allumettes en partie est égal ou supérieur à 1
+												// alors
+			boutonUn.setDisable(true); // désactivation du bouton 1
+			boutonDeux.setDisable(true); // désactivation du bouton 2
+			tourJoueur.setText("Au tour de l'adversaire..."); // affichage du texte "a votre tour..." pour l'IA
+			pause.play(); // faire jouer la pause, permettant de faire jouer l'IA durant cette pause
 
 		}
 
-		if (nbAllumettesPartie < 2) {
-			boutonDeux.setDisable(true);
+		if (nbAllumettesPartie < 2) { // si le nombre d'allumettes en partie est inférieur à 2 alors
+			boutonDeux.setDisable(true); // désactivation du bouton 2
 		}
 
-		if (nbAllumettesPartie <= 0) {
-			boutonUn.setDisable(true); // Désactiver le bouton 1 lorsqu'il reste 0 allumette en jeu
-			finDePartie();
+		if (nbAllumettesPartie <= 0) { // Si nombre d'allumettes en jeu est inférieur ou égal à 0 alors
+			boutonUn.setDisable(true); // Désactiver le bouton 1
+			finDePartie(); // appel de la fonction fin de partie
 		}
 	}
 
+	/*
+	 * Fonction permettant de quitter le jeu à tout moment
+	 */
+
 	@FXML
 	public void quitter() {
-
+		/*
+		 * Stage permet de quitter directement la fenêtre de jeu
+		 */
 		Stage stage = (Stage) boutonQuitter.getScene().getWindow();
 		stage.close();
-		System.out.println("Jeu canceled");
+
 	}
 
 }
