@@ -319,7 +319,7 @@ public class ControleurJeuPendu implements Initializable {
 	
 	
 	
-	/* fonction qui permet de faire apparaître au fur et à mesure que l'utilisateur se trompe les 
+	/* fonction qui permet de faire apparaître au fur et à mesure que l'utilisateur se trompe, les 
 	traits/formes qui composent le dessin du pendu */
 	
 	public void ajoutTraitPendu(int nbErreurs) throws RemoteException {
