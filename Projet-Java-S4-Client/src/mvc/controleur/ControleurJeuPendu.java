@@ -52,26 +52,40 @@ public class ControleurJeuPendu implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		try {
 			pendu = (InterfacePendu) Naming.lookup("rmi://localhost:8000/pendu");
+			
+			//on crée une nouvelle partie de pendu et on récupère son id
 			idPartie = pendu.nouvellePartie();
+			
+			//on génère le mot aléatoire
 			pendu.generationMotAleatoire(idPartie);
+			
+			//on récupére le mot aléatoire généré et on le stocke dans une variable
 			mot = pendu.getMotAleatoire(idPartie);
-			System.out.println("Mot aléatoire de la partie n°" + idPartie + " : " + mot);
 
+			//on initialise un tableau de caractère de la longueur du mot avec des '_'
 			motCache = new char[mot.length()];
 			for (int i = 0; i < mot.length(); i++) {
 				motCache[i] = '_';
 			}
+			
+			//on associe ce tableau de caractère à l'id de la partie en cours
 			pendu.setMotCache(idPartie, motCache);
+			
+			/* on appelle affichage qui va retourner le tableau en un "string" pour pouvoir l'ecrire
+			dan le label */
 			labelMot.setText(pendu.affichage(idPartie));
+			
 			labelPartie.setText("Partie n°" + idPartie);
 			initialisationInterface(); 
+			
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 		}
 		
 	}
 	
+	
 	public void initialisationInterface() {
-		
+		//on ajoute tous les boutons dans une ArrayList afin de faciliter leur gestion
 		listeBoutons.add(boutonA);
 		listeBoutons.add(boutonB);
 		listeBoutons.add(boutonC);
@@ -99,11 +113,13 @@ public class ControleurJeuPendu implements Initializable {
 		listeBoutons.add(boutonY);
 		listeBoutons.add(boutonZ);
 		
+		//on rend chaque bouton actif et on leur définit une taille
 		for (int i=0; i<listeBoutons.size(); i++) {
 			listeBoutons.get(i).setPrefSize(30,30);
 			listeBoutons.get(i).setDisable(false);
 		}
 		
+		//on rend invisible tous les traits composants le pendu 
 		pendu1.setVisible(false);
 		pendu2.setVisible(false);
 		pendu3.setVisible(false);
@@ -116,7 +132,13 @@ public class ControleurJeuPendu implements Initializable {
 		pendu10.setVisible(false);
 		pendu11.setVisible(false);
 	}
+	
+	
 
+	/* pour les 26 fonctions qui suivent qui sont chacunes associé à un bouton, on rend ce bouton 
+	inactif et on fait appel à la fonction "contientLettre" (définie plus bas) et on lui donne en 
+	argument la lettre qui était sur le bouton sélectionné */
+	
 	@FXML
 	public void contientLettreA() throws RemoteException {
 		boutonA.setDisable(true);
@@ -272,23 +294,102 @@ public class ControleurJeuPendu implements Initializable {
 		boutonZ.setDisable(true);
 		contientLettre('z');
 	}
+	
 
+	
+	/* fonction qui fait appel à ecritLettre qui se situe dans le serveur. Elle permet de vérifier
+	si la lettre proposée par le joueur est contenue dans le mot qu'il doit trouver */
+	
 	public void contientLettre(char lettre) throws RemoteException {
+		
 		pendu.ecritLettres(idPartie, lettre);
 		labelMot.setText(pendu.affichage(idPartie));
+		
+		//on récupère le nombre d'erreurs 
 		nbErreurs = pendu.dessinerPendu(idPartie);
+		
+		/*on appelle ajoutTraitPendu qui va rendre visible les traits constituant le dessin du pendu
+		en fonction des erreurs */
 		ajoutTraitPendu(nbErreurs);
+		
+		/*on vérifie si le joueur n'a pas déjà trouvé le mot ou s'il n'a pas atteint les 11 fautes
+		 autorisées. Si c'est le cas, on appelle affichageFin() qui gère la fin d'une partie */
 		if (pendu.partieTerminee(idPartie)) affichageFin();
 	}
 	
+	
+	
+	/* fonction qui permet de faire apparaître au fur et à mesure que l'utilisateur se trompe les 
+	traits/formes qui composent le dessin du pendu */
+	
+	public void ajoutTraitPendu(int nbErreurs) throws RemoteException {
+		switch (nbErreurs) {
+			case 1: {
+				pendu1.setVisible(true);
+				break;
+			}
+			case 2: {
+				pendu2.setVisible(true);
+				break;
+			}
+			case 3: {
+				pendu3.setVisible(true);
+				break;
+			}
+			case 4: {
+				pendu4.setVisible(true);
+				break;
+			}
+			case 5: {
+				pendu5.setVisible(true);
+				break;
+			}
+			case 6: {
+				pendu6.setVisible(true);
+				break;
+			}
+			case 7: {
+				pendu7.setVisible(true);
+				break;
+			}
+			case 8: {
+				pendu8.setVisible(true);
+				break;
+			}
+			case 9: {
+				pendu9.setVisible(true);
+				break;
+			}
+			case 10: {
+				pendu10.setVisible(true);
+				break;
+			}
+			case 11: {
+				pendu11.setVisible(true);
+				break;
+			}
+		}
+	}
+	
+	
+	
+	/*si la partie est terminée on crée une alerte qui va prévenir le joueur de sa victoire ou sa 
+	défaite. Dans ce dernier cas, on lui indique le mot qu'il était censé trouver. On va égalelement
+	lui proposer de rejouer ou de quitter le jeu */
+	
 	public void affichageFin() throws RemoteException {
-		
+		//on crée l'alerte et les boutons
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		ButtonType rejouer = new ButtonType("Rejouer");
         ButtonType quitter = new ButtonType("Quitter");
+        
+        //on enlève les boutons existants au départ
         alert.getButtonTypes().clear();
+        
+        //on ajoute les boutons qu'on a crée
         alert.getButtonTypes().addAll(rejouer, quitter);
         
+        //on personnalise l'alerte selon si le joueur a gagné ou perdu 
 		if (pendu.dessinerPendu(idPartie)>=11) {
 			alert.setTitle("Dommage");
 	        alert.setHeaderText("Dommage, vous avez perdu !");
@@ -300,62 +401,17 @@ public class ControleurJeuPendu implements Initializable {
 	        alert.setContentText("");
 		}
 		
+		//on fait apparaitre l'alerte et récupère le bouton sur lequel l'utilisateur a cliqué
 		Optional<ButtonType> option = alert.showAndWait();
+		
         if (option.get() == rejouer) {
+        	//on fait appelle à la fonction d'initialisation du controleur
             initialize(null, null); 
         } else if (option.get() == quitter) {
+        	//on ferme la fénêtre
         	Stage stage = (Stage) boutonA.getScene().getWindow();
     		stage.close();	
         } 
-	}
-
-	public void ajoutTraitPendu(int nbErreurs) throws RemoteException {
-		switch (nbErreurs) {
-		case 1: {
-			pendu1.setVisible(true);
-			break;
-		}
-		case 2: {
-			pendu2.setVisible(true);
-			break;
-		}
-		case 3: {
-			pendu3.setVisible(true);
-			break;
-		}
-		case 4: {
-			pendu4.setVisible(true);
-			break;
-		}
-		case 5: {
-			pendu5.setVisible(true);
-			break;
-		}
-		case 6: {
-			pendu6.setVisible(true);
-			break;
-		}
-		case 7: {
-			pendu7.setVisible(true);
-			break;
-		}
-		case 8: {
-			pendu8.setVisible(true);
-			break;
-		}
-		case 9: {
-			pendu9.setVisible(true);
-			break;
-		}
-		case 10: {
-			pendu10.setVisible(true);
-			break;
-		}
-		case 11: {
-			pendu11.setVisible(true);
-			break;
-		}
-		}
 	}
 
 }
