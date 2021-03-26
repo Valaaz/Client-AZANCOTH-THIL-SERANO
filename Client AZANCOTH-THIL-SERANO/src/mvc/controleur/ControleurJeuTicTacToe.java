@@ -307,14 +307,20 @@ public class ControleurJeuTicTacToe implements Initializable {
 		if (joue.cancel())
 			System.out.println("Joue cancel");
 
-		try {
-			intTtt.setFin(idPartie, 3);	// On set la fin de la partie avec comme numéro 3
-		} catch (RemoteException e) {
-			System.out.println(e);
-		}
+		/* Cette condition permet d'éviter que quand 2 joueurs ont fini une partie,
+		 * si l'un des 2 quitte et que l'autre reste et qu'un nouveau joueur arrive, puis que quand le joueur qui est resté quitte,
+		 * ça dise au nouveau joueur que son adversaire a quitté la partie
+		 */
+		if (intTtt.getNombreJoueur(idPartie) == 2) {
+			try {
+				intTtt.setFin(idPartie, 3);	// On set la fin de la partie avec comme numéro 3
+			} catch (RemoteException e) {
+				System.out.println(e);
+			}
 
-		// On set le nombre de joueur à 0 pour libérer la partie
-		intTtt.setNombreJoueur(idPartie, 0);
+			// On set le nombre de joueur à 0 pour libérer la partie
+			intTtt.setNombreJoueur(idPartie, 0);
+		}
 
 		Stage stage = (Stage) btnQuitter.getScene().getWindow();	// On récupère la fenêtre de jeu..
 		stage.close();				// ..puis on la ferme
