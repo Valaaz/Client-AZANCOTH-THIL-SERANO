@@ -1,0 +1,8 @@
+.root{
+    -fx-base: rgb(50,50,50);
+}
+
+.tictactoeLbl:hover{
+    -fx-background-color: rgb(80, 80, 80);
+
+}

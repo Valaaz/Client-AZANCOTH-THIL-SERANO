@@ -10,18 +10,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controleur.ControleurJeuAllumette">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/Main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.controleur.ControleurJeuAllumette">
    <children>
-      <Label alignment="CENTER" prefHeight="18.0" prefWidth="634.0" text="Allumettes" textFill="#6c0505">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
+      <ImageView fitHeight="81.0" fitWidth="313.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Alum.png" />
+         </image>
          <VBox.margin>
-            <Insets top="5.0" />
+            <Insets top="25.0" />
          </VBox.margin>
-      </Label>
+      </ImageView>
       <Label fx:id="compteurAllumettesPartie" alignment="CENTER" prefHeight="18.0" prefWidth="642.0" text="compteur">
          <VBox.margin>
             <Insets bottom="10.0" top="15.0" />

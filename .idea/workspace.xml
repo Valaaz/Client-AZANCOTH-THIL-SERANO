@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="59a7bb5a-356e-42a9-affe-4faa40023689" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Client AZANCOTH-THIL-SERANO/src/mvc/vue/FicheAllumettes.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client AZANCOTH-THIL-SERANO/src/mvc/vue/FicheAllumettes.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client AZANCOTH-THIL-SERANO/src/mvc/vue/FicheMenuPrincipal.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client AZANCOTH-THIL-SERANO/src/mvc/vue/FicheMenuPrincipal.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client AZANCOTH-THIL-SERANO/src/mvc/vue/FichePendu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client AZANCOTH-THIL-SERANO/src/mvc/vue/FichePendu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client AZANCOTH-THIL-SERANO/src/mvc/vue/FicheTicTacToe.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client AZANCOTH-THIL-SERANO/src/mvc/vue/FicheTicTacToe.fxml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.2.3\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1qWSyE3zZ6rPLETBYSHSaDmuuu0" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Client AZANCOTH-THIL-SERANO/src/mvc/vue/images" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Utilisateur\IdeaProjects\Client-AZANCOTH-THIL-SERANO\Client AZANCOTH-THIL-SERANO\src\mvc\vue\images" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Utilisateur\IdeaProjects\Client-AZANCOTH-THIL-SERANO\Client AZANCOTH-THIL-SERANO\src\mvc\vue\images" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="59a7bb5a-356e-42a9-affe-4faa40023689" name="Default Changelist" comment="" />
+      <created>1617194105041</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1617194105041</updated>
+      <workItem from="1617194106212" duration="877000" />
+      <workItem from="1617195005373" duration="50000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="778" y="421" key="Github.CreateGistDialog" timestamp="1617194141216">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="778" y="421" key="Github.CreateGistDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1617194141216" />
+  </component>
+</project>
